@@ -1,0 +1,74 @@
+<!--表单项目展示首页-->
+<form id="pagerForm" method="post" action="{{$smarty.const.__ACTION__|url}}">
+	<input type="hidden" name="pageNum" value="{{$page.pageNum}}" />
+	<input type="hidden" name="numPerPage" value="{{$page.numPerPage}}" />
+	<input type="hidden" name="orderField" value="{{$page.orderField}}" />
+	<input type="hidden" name="orderDirection" value="{{$page.orderDirection}}" />
+	<input type="hidden" name="PID" value="{{$smarty.post.PID}}" />
+	<input type="hidden" name="TID" value="{{$smarty.post.TID}}" />
+
+</form>
+
+<div class="pageHeader">
+	<form onsubmit="return navTabSearch(this);" action="{{$smarty.const.__ACTION__|url}}" method="post">
+	<div class="searchBar">
+		<table class="searchContent">
+			<tr>
+				<td>
+					<select class="combox" name="PID">
+						<option value="">--项目名称-</option>
+						{{html_options options=$project_name selected=$smarty.post.PID}}
+					</select>
+				</td>
+				<td>
+					附件归属代号：<input type="text" name="TID" value="{{$smarty.post.TID}}" />
+				</td>
+			
+				<td>
+					<div class="subBar">
+						<ul>
+							<li><div class="buttonActive"><div class="buttonContent"><button type="submit">检索</button></div></div></li>
+							<li><div class="button"><div class="buttonContent"><button type="button" onclick="return navTabSearch(this);">刷新</button></div></div></li>
+						</ul>
+					</div>
+				</td>
+			</tr>
+		</table>
+		
+	</div>
+	</form>
+</div>
+<div class="pageContent">
+	<div class="panelBar">
+		<ul class="toolBar">
+			<li><a class="add" href="{{$smarty.const.__URL__&a=addattachmenttype|url}}" target="dialog" width="500" height="300"><span>新增附件归属</span></a></li>
+		</ul>
+
+	</div>
+	<table class="table" width="100%" layoutH="114">
+		<thead>
+			<tr>
+				<th>项目代号</th>
+				<th>项目名称</th>
+				<th>附件归属代号</th>
+				<th>附件归属名称</th>
+				<th>删除</th>
+			</tr>
+		</thead>
+		<tbody>
+			{{section name=loop loop=$list}}
+			<tr target="id" rel="{{$list[loop].id}}">
+				<td>{{$list[loop].PID}}</td>
+				<td>{{$project_name[$list[loop].PID]}}</td>
+				<td>{{$list[loop].TID}}</td>
+				<td>{{$list[loop].type}}</td>
+				
+				<td>
+					<a target="ajaxTodo" href="{{$smarty.const.__URL__&a=deleteattachmenttype&id={{$list[loop].id}}|url}}" class="btnDel" title="确定要删除吗?">删除</a>
+				</td>
+			</tr>
+		    {{/section}}
+		</tbody>
+	</table>
+	{{include file="Include/page.html"}}
+</div>

@@ -1,0 +1,21 @@
+<div class="pageContent">
+	<form method="post" action="{{$smarty.const.__ACTION__&id={{$id}}|url}}" class="pageForm required-validate" onsubmit="return validateCallback(this, dialogAjaxDone);">
+		<div class="pageFormContent" layoutH="56" >
+			<input type = "hidden" name = "PID" value = {{$PID}}>
+			<p><font color="red">{{$PName}}</font></p>
+			<div class="divider"></div>
+			<p>
+				<label>项目批次：</label>
+				<input name="TIME" id = "TIME" class="required" type="text" size="20" value="" alt=""/>
+			</p>
+		</div>
+		<div class="formBar">
+			<ul>
+				<li><div class="buttonActive"><div class="buttonContent"><button type="submit">添加</button></div></div></li>
+				<li>
+					<div class="button"><div class="buttonContent"><button type="button" class="close">取消</button></div></div>
+				</li>
+			</ul>
+		</div>
+	</form>
+</div>

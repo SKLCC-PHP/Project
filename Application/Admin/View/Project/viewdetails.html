@@ -1,0 +1,235 @@
+<div class="pageContent">
+	<div class="tabs" currentIndex="0" eventType="click">
+		<div class="tabsHeader">
+			<div class="tabsHeaderContent">
+				<ul>
+					<li><a href="javascript:;"><span>基本信息</span></a></li>
+					<li><a href="{{$smarty.const.__URL__&a=viewdetails&main_info_id=$id&column=2|url}}" class="j-ajax"><span>申请材料</span></a></li>
+					<li><a href="{{$smarty.const.__URL__&a=viewdetails&main_info_id=$id&column=3|url}}" class="j-ajax"><span>中期检查</span></a></li>
+					<li><a href="{{$smarty.const.__URL__&a=viewdetails&main_info_id=$id&column=4|url}}" class="j-ajax"><span>结题申请</span></a></li>
+					<li><a href="{{$smarty.const.__URL__&a=viewdetails&main_info_id=$id&column=5|url}}" class="j-ajax"><span>结题总结</span></a></li>
+					<li><a href="{{$smarty.const.__URL__&a=viewdetails&main_info_id=$id&column=6|url}}" class="j-ajax"><span>获奖记录</span></a></li>
+				</ul>
+			</div>
+		</div>
+		<div class="tabsContent" style="height:100%;">
+		
+			<!--第一个栏目开始-->
+			<div>
+			<div class="pageFormContent" layoutH="56" style = "padding-left:5%; padding-right:10%">
+				<table class="st">
+					<tr>
+						<th colspan="2" class="sth1">项目名称</th>
+						<td colspan="7" class="std">{{$list.title}}</td>
+					</tr>
+					<tr>
+						<th rowspan="3" class="sth2">申报者情况</th>
+
+						<th width="70" class="sth1">姓名</th>
+						<td width="70" class="std">{{$manager_info['realname']}}</td>
+
+						<th width="70" class="sth1">性别</th>
+						<td width="70" class="std">{{if $manager_info['sex'] eq 0}}男{{else}}女{{/if}}</td>
+
+						<th width="70" class="sth1">出生年月</th>
+						<td width="70" class="std">{{$manager_info['birthday']}}</td>
+
+						<th width="70" class="sth1">政治面貌</th>
+						<td width="70" class="std">{{$manager_info['polical_status']}}</td>
+					</tr>
+					<tr>
+						<th class="sth1">现学历</th>
+						<td colspan="4" class="std">{{$manager_info['education']}}</td>
+
+						<th class="sth1">手机</th>
+						<td colspan="2" class="std">{{$manager_info['telephone']}}</td>
+					</tr>
+					<tr>
+						<th class="sth1">专业</th>
+						<td colspan="4" class="std">{{$manager_info['specialty']}}</td>
+
+						<th class="sth1">入学时间</th>
+						<td colspan="2" class="std">{{$manager_info['admit_time']}}</td>
+					</tr>
+					
+					<tr>
+						<th rowspan = {{$member['sum']}} class="sth2">合作者情况</th>
+
+						<th class="sth1">姓名</th>
+						<th class="sth1">学号</th>
+						<th colspan="2" class="sth1">学院</th>
+						<th class="sth1">专业年级</th>
+						<th class="sth1">手机</th>
+						<th colspan="2"  class="sth1">承担内容</th>
+					</tr>
+			
+					{{section name=loop loop=$list_member}}
+					<tr>
+						<td class="std">{{$list_member[loop][1]}}</td>
+						<td class="std">{{$list_member[loop][0]}}</td>
+						<td colspan="2" class="std">{{$list_member[loop][3]}}</td>
+						<td class="std">{{$list_member[loop][4]}}</td>
+						<td class="std">{{$list_member[loop][2]}}</td>
+						<td colspan="2" class="std">{{$list_member[loop][5]}}</td>
+					</tr>
+					{{/section}}
+					<tr>
+						<th rowspan = {{$teacher['sum']}}  class="sth2">指导教师</th>
+
+						<th class="sth1">姓名</th>
+						<th class="sth1">职称</th>
+						<th colspan="2" class="sth1">单位名称</th>
+						<th colspan="4" class="sth1">研究方向</th>
+					</tr>
+
+					{{section name=loop loop=$list_teacher}}
+					<tr>
+						<td class="std">{{$list_teacher[loop][0]}}</td>
+						<td class="std">{{$list_teacher[loop][1]}}</td>
+						<td colspan="2" class="std">{{$list_teacher[loop][2]}}</td>
+						<td colspan="4" class="std">{{$list_teacher[loop][3]}}</td>
+					</tr>
+					{{/section}}
+
+					<tr>
+						<th colspan="2" class="sth1">课题类型</th>
+						<td colspan="7" class="std">{{$list['type']}}</td>
+					</tr>
+					<tr>
+						<th colspan="2" class="sth1">项目类型</th>
+						<td colspan="7" class="std">第{{$list['TIME']}}批{{$cur_project_name}}</td>
+					</tr>
+					<tr>
+						<th colspan="2" class="sth1">备注</th>
+						<td colspan="7" class="std">{{$list['remarks']}}</td>
+					</tr>
+				</table>
+				</div>	
+			<!--	<form method="post" action="{{$smarty.const.__URL__&a=updatemymaininfo&id=$id|url}}" class="pageForm required-validate" onsubmit="return validateCallback(this, dialogAjaxDone);">
+				<div class="pageFormContent" layoutH="56">
+					
+					<dl>
+						<dt>项目大类：</dt>
+						<dd>{{$cur_project_name}}</dd>
+					</dl>
+					<dl>
+						<dt>项目编号：</dt>
+						<dd>{{$list.project_id}}</dd>
+					</dl>
+					<dl>
+						<dt>项目名称：</dt>
+						<dd>{{$list.title}}</dd>
+					</dl>
+					<dl>
+						<dt>主持人：</dt>
+						<dd>{{$manager_info['realname']}}</dd>
+					</dl>
+					<dl>
+						<dt>项目类别：</dt>
+						<dd>{{$list.type}}</dd>
+					</dl>
+					<dl>
+						<dt>联系电话:</dt>
+						<dd>{{$manager_info['telephone']}}</dd>
+					</dl>
+					<dl>
+						<dt>单位名称：</dt>
+						<dd>
+							{{$college_name}}
+						</dd>
+					</dl>
+					
+					<dl>
+						<dt>邮箱:</dt>
+						<dd>{{$manager_info['email']}}</dd>
+					</dl>
+					<dl>
+						<dt>指导老师：</dt>
+						{{foreach key=k item=v from=$teacher}}
+							姓名{{$v[0]}}
+							职称{{$v[1]}}
+							单位{{$v[2]}}
+							研究方向{{$v[3]}}
+							{{/foreach}}
+					</dl>
+					<dl>
+						<dt></dt>
+						<dd></dd>
+					</dl>
+					<dl>
+						<dt>项目组成员：</dt>
+						{{foreach key=k item=v from=$member}}
+							学号{{$v[0]}}
+							姓名{{$v[1]}}
+							手机{{$v[2]}}
+							学院{{$v[3]}}
+							专业{{$v[4]}}
+							{{/foreach}}
+					</dl>
+					<dl>
+						<dt></dt>
+						<dd></dd>
+					</dl>
+					<dl>
+						<dt>最高学历：</dt>
+						<dd>
+						</dd>
+					</dl>
+					<div class="divider"></div>
+					
+					<dl class="nowrap">
+						<dt>备注：</dt>
+						<dd>{{$list.remarks}}</dd>
+					</dl>
+					</div>
+				
+			</form>-->
+			</div>
+			<!--第一个栏目结束-->
+			<!--下面是对应的其它表头，一个都不能少-->
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<!-- {{foreach key=k item=v from=$list}}
+			<div></div>
+			{{/foreach}} -->
+		</div>
+		<div class="tabsFooter">
+			<div class="tabsFooterContent"></div>
+		</div>
+	</div>
+</div>
+
+<style type="text/css">
+	.std
+	{
+		font-size: 14px;
+		padding: 5px;
+		text-align: center;		
+		border:solid 1px #B8D0D6;
+	}
+	.sth1
+	{
+		font-size: 16px;
+		padding:  5px;
+		text-align: center;		
+		border:solid 1px #B8D0D6;
+	}
+	.sth2
+	{
+		font-size: 16px;
+		border:solid 1px #B8D0D6;
+		padding: 5px;	
+		font-size: 16px;
+		width:16px;
+		height: 90px;
+		word-wrap:break-word;
+		word-break:normal;
+	}
+	.st
+	{
+		 border:solid 1px #B8D0D6
+	}
+</style>

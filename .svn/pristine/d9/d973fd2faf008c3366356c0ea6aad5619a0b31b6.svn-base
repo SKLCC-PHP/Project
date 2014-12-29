@@ -1,0 +1,73 @@
+
+<form id="pagerForm" method="post" action="{{$smarty.const.__URL__&a=statistics&PID=$PID&TIME=$TIME|url}}">
+	<input type="hidden" name="pageNum" value="{{$page.pageNum}}" />
+	<input type="hidden" name="numPerPage" value="{{$page.numPerPage}}" />
+	<input type="hidden" name="orderField" value="{{$page.orderField}}" />
+	<input type="hidden" name="orderDirection" value="{{$page.orderDirection}}" />
+	<input type="hidden" name="college_id" value="{{$smarty.post.college_id}}">
+
+</form>
+
+<div class="pageHeader">
+	<form onsubmit="return navTabSearch(this);" action="{{$smarty.const.__URL__&a=statistics&PID=$PID&TIME=$TIME|url}}" method="post">
+	<div class="searchBar">
+		<table class="searchContent">
+			<tr>
+				<td>
+					<select class="combox" name="college_id">
+						<option value="">--单位名称--</option>
+						{{html_options options=$college selected=$smarty.post.college_id}}
+					</select>
+				</td>
+				<td>
+					<div class="subBar">
+						<ul>
+							<li><div class="buttonActive"><div class="buttonContent"><button type="submit">检索</button></div></div></li>
+							<li><div class="button"><div class="buttonContent"><button type="button" onclick="return navTabSearch(this);">刷新</button></div></div></li>
+						</ul>
+					</div>
+				</td>
+			</tr>
+		</table>
+		
+	</div>
+	</form>
+</div>
+<div class="pageContent">
+	<div class="panelBar">
+	</div>
+	<table class="table" width="100%" layoutH="114">
+		<thead>
+			<tr>
+				<th orderField="college_id" class="{{$page.orderDirection}}">单位编号</th>
+				<th>单位名称</th>
+				<th>申报项目总数</th>
+				<!--循环动态生成项目类型-->
+				{{section name=loop loop=$list_type}}
+				<th>{{$list_type[loop].type}}</th>
+				{{/section}}
+				<th>参与总人数</th>
+				
+			</tr>
+		</thead>
+		<tbody>
+		
+			{{section name=loop loop=$list}}
+			<tr target="college_id" rel="{{$list[loop].college_id}}">
+				<td>{{$list[loop].college_id}}</td>
+				<td>{{$list[loop].college_name}}</td>
+				<td>{{$list[loop].project_count}}</td>
+				<!--内循环根据项目类型输出该类型的项目数量-->
+				{{section name=loop_type loop=$list_type}}
+				<td>{{$list[loop][$list_type[loop_type].type]}}</td>
+				{{/section}}
+				<td>{{$list[loop].totle_number}}</td>
+			
+				
+			</tr>
+		    {{/section}}
+		    
+		</tbody>
+	</table>
+	{{include file="Include/page.html"}}
+</div>

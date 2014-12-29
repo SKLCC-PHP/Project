@@ -1,0 +1,103 @@
+
+<form id="pagerForm" method="post" action="{{$smarty.const.__URL__&PID=$PID&TIME=$TIME|url}}">
+	<input type="hidden" name="pageNum" value="{{$page.pageNum}}" />
+	<input type="hidden" name="numPerPage" value="{{$page.numPerPage}}" />
+	<input type="hidden" name="orderField" value="{{$page.orderField}}" />
+	<input type="hidden" name="orderDirection" value="{{$page.orderDirection}}" />
+
+	<input type="hidden" name="type" value="{{$smarty.post.type}}">
+	<input type="hidden" name="student_name" value="{{$smarty.post.student_name}}">
+	<input type="hidden" name="college_id" value="{{$smarty.post.college_id}}">
+
+</form>
+
+<div class="pageHeader">
+	<form onsubmit="return navTabSearch(this);" action="{{$smarty.const.__URL__&PID=$PID&TIME=$TIME|url}}" method="post">
+	<div class="searchBar">
+		<table class="searchContent">
+			<tr>                                         
+				
+				<td>
+					<select class="combox" name="type">
+						<option value="">--附件归属--</option>
+							{{html_options options=$attachment_type selected=$smarty.post.type}}
+					</select>
+				</td>
+				<td>
+					<select class="combox" name="college_id">
+						<option value="">--单位--</option>
+						{{html_options options=$college selected=$smarty.post.college_id}}
+					</select>
+				</td>
+				<td>
+					上传者：<input type="text" name="student_name" value="{{$smarty.post.student_name}}" />
+				</td>
+				<td>
+					<div class="subBar">
+						<ul>
+							<li><div class="buttonActive"><div class="buttonContent"><button type="submit">检索</button></div></div></li>
+							<li><div class="button"><div class="buttonContent"><button type="button" onclick="return navTabSearch(this);">刷新</button></div></div></li>
+						</ul>
+					</div>
+				</td>
+			</tr>
+		</table>
+		
+	</div>
+	</form>
+</div>
+<div class="pageContent">
+	<div class="panelBar">
+		<ul class="toolBar">
+			<li></li>
+		</ul>
+	</div>
+	<table class="table" width="100%" layoutH="114">
+		<thead>
+			<tr>
+				<th orderField="id" class="{{$page.orderDirection}}">项目编号</th>
+				<th>项目名称</th>
+				<th>附件名称</th>
+				<th>附件归属</th>
+				<!-- <th>描述</th> -->
+				<th>上传者</th>
+				<th>单位</th>
+				<th>上传时间</th>
+				<th>预览</th>
+				<th>下载</th>		
+			</tr>
+		</thead>
+		<tbody>
+			{{section name=loop loop=$list}}
+			<tr target="id" rel="{{$list[loop].id}}">
+				<td>{{$list[loop].project_id}}</td>
+				<td>{{$list[loop].title}}</td>
+				<td>{{$list[loop].name}}</td>
+				<td>{{$list[loop].type}}</td>
+				<!-- <td>{{$list[loop].description}}</td> -->
+				<td>{{$list[loop].realname}}</td>
+				<td>{{$list[loop].college_name}}</td>
+				<td>{{$list[loop].create_time}}</td>
+				<td>
+					{{if $list[loop].type neq '中期汇报ppt等' and $list[loop].type neq '结题汇报ppt等'}}
+					<a target = "_blank" class="btnLook" href="{{$smarty.const.__SHARE__upload/}}{{$list[loop].address}}" >预览|</a>
+					{{/if}}
+				</td>
+				<td>
+					<a class="btnSelect" href="{{$smarty.const.__URL__&a=download&address=$list[loop].address&stuID=$list[loop].stuID|url}}" >下载</a>
+				</td>
+
+				
+				<!--
+				<td>
+
+					<a target="ajaxTodo" href="{{$smarty.const.__URL__&a=delete&ids=$news[loop].id|url}}" class="btnDel" title="确定要删除吗?">删除</a>
+					<a target="navTab" href="{{$smarty.const.__URL__&a=update&id=$news[loop].id|url}}" class="btnEdit">编辑</a>
+				</td>
+				-->
+			</tr>
+		    {{/section}}
+		</tbody>
+	</table>
+	{{include file="Include/page.html"}}
+</div>

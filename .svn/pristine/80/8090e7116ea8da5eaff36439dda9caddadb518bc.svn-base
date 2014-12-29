@@ -1,0 +1,53 @@
+<!--我的获奖记录-->
+<form id="pagerForm" method="post" action="{{$smarty.const.__URL__&a=updatemyawards|url}}">
+	<input type="hidden" name="pageNum" value="{{$page.pageNum}}" />
+	<input type="hidden" name="numPerPage" value="{{$page.numPerPage}}" />
+	<input type="hidden" name="orderField" value="{{$page.orderField}}" />
+	<input type="hidden" name="orderDirection" value="{{$page.orderDirection}}" />
+	<input type="hidden" name="title" value="{{$smarty.post.title}}" />
+</form>
+
+<div class="pageContent">
+	<form method="post" action="{{$smarty.const.__URL__&a=updatemyawards|url}}" class="pageForm required-validate" onsubmit="return validateCallback(this, navTabAjaxDone);">
+		<div class="pageFormContent" layoutH="56">
+		<b style = "color: red">{{$close_message}}</b><br />
+		<div class="button">
+			<a class="add" href="{{$smarty.const.__URL__&a=addmyawards&main_info_id={{$main_info_id}}|url}}" target="dialog" width="820" height="450"><span>新增一条获奖记录</span></a>
+		</div>
+		<div class="button">
+					<a class="add" href="{{$smarty.const.__URL__&a=viewdetails&column=6&main_info_id={{$main_info_id}}|url}}" target="dialog" width="940" height="550"><span>预览</span></a>
+		</div>
+			
+		<input type="hidden" name="id" value="{{$list.main_info_id}}">
+
+		
+		
+			<table class="table" width="100%" layoutH="114">
+		<thead>
+			<tr>
+				<th>描述</th>
+				<th>图片</th>
+				<th>创建时间</th>
+				<th>删除</th>
+				
+			</tr>
+		</thead>
+		<tbody>
+			{{section name=loop loop=$list}}
+			<tr target="id" rel="{{$list[loop].id}}">
+			
+				<input name="id" value="{{$list[loop].id}}" type="hidden">
+				<td>{{$list[loop].description}}</td>
+				<td class="box"><a href="{{$smarty.const.__UPLOAD__}}{{$list[loop].address}}" target="{{$smarty.const.__UPLOAD__}}{{$list[loop].address}}"><img style="width:100px;height:100px;" src="{{$smarty.const.__UPLOAD__}}{{$list[loop].address}}"/></a></td>
+				<td>{{$list[loop].create_time}}</td>
+				<td>
+					<a target="ajaxTodo" href="{{$smarty.const.__URL__&a=deletemyawards&id=$list[loop].id|url}}" class="btnDel" title="确定要删除吗?">删除</a>
+				</td>
+			</tr>
+		    {{/section}}
+		</tbody>
+	</table>
+			
+	</div>
+	</form>
+</div>

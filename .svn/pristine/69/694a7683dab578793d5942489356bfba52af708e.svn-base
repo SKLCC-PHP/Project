@@ -1,0 +1,82 @@
+
+
+<div class="pageHeader">
+	<form onsubmit="return navTabSearch(this);" action="{{$smarty.const.__URL__|url}}" method="post">
+	<div class="searchBar">
+		<table class="searchContent">
+			<tr>
+				<td>
+					模版序号：<input type="text" name="id" value="{{$smarty.post.id}}" />
+				</td>
+				<td>
+					模版名称：<input type="text" name="name" value="{{$smarty.post.name}}" />
+				</td>
+				<td>
+					<div class="subBar">
+						<ul>
+							<li><div class="buttonActive"><div class="buttonContent"><button type="submit">检索</button></div></div></li>
+							<li><div class="button"><div class="buttonContent"><button type="button" onclick="return navTabSearch(this);">刷新</button></div></div></li>
+						</ul>
+					</div>
+				</td>
+			</tr>
+		</table>
+		
+	</div>
+	</form>
+</div>
+<div class="pageContent">
+	<div class="panelBar">
+		<ul class="toolBar">
+			{{if $role_ID neq 'host_student'}}
+			<li><a class="add" href="{{$smarty.const.__URL__&a=upload|url}}" target="dialog" width="800" height="450"><span>上传</span></a></li>
+			{{/if}}
+			<li class="line">line</li>
+			
+		</ul>
+	</div>
+	<table class="table" width="100%" layoutH="114">
+		<thead>
+			<tr>
+				
+				<th>模版序号</th>
+				<th>模版名称</th>
+				<th>所属项目</th>
+				<th>作用描述</th>
+				<th>上传者</th>
+				<th>上传日期</th>
+				<th>下载次数</th>
+				<th>下载</th>
+				{{if $role_ID neq 'host_student'}}
+				<th>删除</th>
+				{{/if}}
+			</tr>
+		</thead>
+		<tbody>
+			{{section name=loop loop=$list}}
+			<tr target="id" rel="{{$list[loop].id}}">
+				<td>{{$list[loop].id}}</td>
+				<td>{{$list[loop].name}}</td>
+				<td>{{$list[loop].PName}}</td>
+				<td>{{$list[loop].description}}</td>
+				<td>{{$list[loop].realname}}</td>
+				<td>{{$list[loop].create_time}}</td>
+				<td>{{$list[loop].num}}</td>
+				
+				<td>
+					<a class="btnSelect" href="{{$smarty.const.__URL__&a=download&id=$list[loop].id&address=$list[loop].address&name=$list[loop].name|url}}" >下载</a>
+				</td>
+				{{if $role_ID neq 'host_student'}}
+					<td>
+					{{if $list[loop].can_delete eq 'true'}}
+						<a target="ajaxTodo" href="{{$smarty.const.__URL__&a=delete&ids=$list[loop].id|url}}" class="btnDel" title="确定要删除吗?">删除</a>
+					{{/if}}
+					</td>
+				{{/if}}
+				
+			</tr>
+		    {{/section}}
+		</tbody>
+	</table>
+	{{include file="Include/page.html"}}
+</div>

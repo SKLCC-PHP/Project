@@ -1,0 +1,8 @@
+[2014-02-22 21:20:42]SQL[256]Table 'project.pro_user' doesn't exist[SQL]:SHOW COLUMNS FROM `pro_user`C:\xampp\htdocs\project\Library\Log.class.php362
+[2014-02-22 21:41:05]SQL[256]Table 'project.pro_user' doesn't exist[SQL]:SHOW COLUMNS FROM `pro_user`C:\xampp\htdocs\project\Library\Log.class.php362
+[2014-02-22 21:44:34]SQL[256]Table 'project.pro_user' doesn't exist[SQL]:SHOW COLUMNS FROM `pro_user`C:\xampp\htdocs\project\Library\Log.class.php362
+[2014-02-22 21:44:54]SQL[256]Table 'project.pro_user' doesn't exist[SQL]:SHOW COLUMNS FROM `pro_user`C:\xampp\htdocs\project\Library\Log.class.php362
+[2014-02-22 22:15:23]EXCEPTION[1000]TraceException Model::setUser , method not exists.C:\xampp\htdocs\project\Application\Member\Controller\UserController.class.php112
+[2014-02-22 22:22:33]EXCEPTION[1000]TraceException Model::setUser , method not exists.C:\xampp\htdocs\project\Application\Member\Controller\UserController.class.php112
+[2014-02-22 22:24:41]EXCEPTION[1000]TraceException Model::setUser , method not exists.C:\xampp\htdocs\project\Application\Member\Controller\UserController.class.php112
+[2014-02-22 23:06:31]EXCEPTION[1000]TraceException Model::isLogin , method not exists.C:\xampp\htdocs\project\Application\Member\Controller\IndexController.class.php9

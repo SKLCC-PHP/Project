@@ -1,0 +1,84 @@
+
+<div class="pageContent">
+	<form method="post" action="{{$smarty.const.__URL__&a=updateself|url}}" class="pageForm required-validate" onsubmit="return validateCallback(this, dialogAjaxDone);">
+
+		<div class="pageFormContent" layoutH="56">
+			<p>
+				<label>学号(工号)：</label>
+				<input name="username" readonly = "readonly" class="required" type="text" size="20" value="{{$list.username}}" alt=""/>
+			</p>
+			<p>
+				<label>姓名：</label>
+				<input name="realname" class="required" type="text" size="20" value="{{$list.realname}}" alt=""/>
+			</p>
+			<p>
+				<label>性别：</label>
+				<select class="combox" name="sex">
+					<option value="{{$list.sex}}"></option>
+					<option value="0">男</option>
+					<option value="1">女</option>
+				</select>
+
+			</p>
+			<p>
+				<label>出生日期：</label>
+				<td>
+					<input type="text" class="date" readonly="true" name="birthday" value="{{$list.birthday}}"/>
+				</td>
+			</p>
+			{{if $cur_role_id eq 'host_student'}}
+			<p>
+				<label>入学时间：</label>
+				<input name="admit_time" class="required" type="text" size="20" value="{{$list.admit_time}}" alt=""/>
+			</p>
+			{{/if}}
+			<p>
+				<label>政治面貌：</label>
+				<input name="polical_status" class="required" type="text" size="20" value="{{$list.polical_status}}" alt=""/>
+			</p>
+			<p>
+				<label>院系：</label>
+				<td>
+				<input name="college_name" class="required" type="text" size="20" value="{{$college[$list.college_id]}}" readonly="readonly" />
+					<!-- <select class="combox" name="college_id">
+						<option value="{{$list.college_id}}"></option>
+						{{html_options options=$college selected=$smarty.post.college_id}}
+					</select> -->
+				</td>
+			</p>
+			{{if $cur_role_id eq 'host_student'}}
+			<p>
+				<label>专业：</label>
+				<input name="specialty" class="required" type="text" size="20" value="{{$list.specialty}}" alt=""/>
+			</p>
+			
+			{{/if}}
+			
+			<p>
+				<label>学历：</label>
+				<input name="education" class="required" type="text" size="20" value="{{$list.education}}" alt=""/>
+			</p>
+			<p>
+				<label>角色：</label>
+				<input name="role_name" readonly = "readonly" class="required" type="text" size="20" value="{{$role_name}}" alt=""/>
+			</p>
+			<p>
+				<label>联系电话：</label>
+				<input name="telephone" class="required" type="text" size="20" value="{{$list.telephone}}" alt=""/>
+			</p>
+			<p>
+				<label>邮箱：</label>
+				<input name="email" readonly = "readonly" class="required" type="text" size="20" value="{{$list.email}}" alt=""/>
+			</p>
+		
+		</div>
+		<div class="formBar">
+			<ul>
+				<li><div class="buttonActive"><div class="buttonContent"><button type="submit">保存</button></div></div></li>
+				<li>
+					<div class="button"><div class="buttonContent"><button type="button" class="close">取消</button></div></div>
+				</li>
+			</ul>
+		</div>
+	</form>
+</div>

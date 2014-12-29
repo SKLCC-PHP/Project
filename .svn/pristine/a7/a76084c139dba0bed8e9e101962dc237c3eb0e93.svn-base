@@ -1,0 +1,125 @@
+<div class="pageContent">
+	<form method="post" action="{{$smarty.const.__URL__&a=updatemyapplication|url}}" class="pageForm required-validate" onsubmit="return validateCallback(this, navTabAjaxDone);">
+		<div class="pageFormContent" layoutH="56">
+		<input type = "hidden" name = "main_info_id" value = "{{$list.main_info_id}}">
+		<input type = "hidden" name = "stuID" value = "{{$list.stuID}}">
+		<input type = "hidden" name = "PID" value = "{{$PID}}">
+		<input type = "hidden" name = "TIME" value = "{{$TIME}}">
+			<b style = "color: red">{{$close_message}}</b><br />
+			<b style = "color: red">{{$message}}</b>
+			<dl class="nowrap">
+				按要求填写好如下栏目
+				
+			</dl>
+			
+			<div class="divider"></div>
+			<dl class="nowrap">
+				<dt>1、背景<br>项目当前的研究现状：</dt>
+				<dd>
+					<div class="unit">
+						<textarea 
+							class = "editor" 
+							name = "background"
+
+							id = "background"
+							rows = "25" 
+							cols = "100" 
+							tools = "full"
+							upImgUrl = "!{editorRoot}xheditor_plugins/multiupload/multiupload.html?uploadurl={{$uploadUrl}}&params={'PHPSESSID':'{{$PHPSESSID}}'}&ext=图片文件(*.jpg;*.jpeg;*.gif;*.png)"
+						>{{$list.background}}</textarea>
+					</div>
+					<div class="buttonActive"><div class="buttonContent">
+					<button type="submit">保存本栏</button></div></div>
+					
+				</dd>
+			</dl>
+
+			<div class="divider"></div>
+			<dl class="nowrap">
+				<dt>2、内容 <br>本项目研究的主要内容、目标：</dt>
+				<dd>
+					<div class="unit">
+						<textarea 
+							class = "editor" 
+							name = "content"
+							id = "content"
+							rows = "25" 
+							cols = "100" 
+							tools = "full"
+							upImgUrl = "!{editorRoot}xheditor_plugins/multiupload/multiupload.html?uploadurl={{$uploadUrl}}&params={'PHPSESSID':'{{$PHPSESSID}}'}&ext=图片文件(*.jpg;*.jpeg;*.gif;*.png)"
+						>{{$list.content}}</textarea>
+					</div>
+					<div class="buttonActive"><div class="buttonContent">
+					<button type="submit">保存本栏</button></div></div>
+				</dd>
+			</dl>
+			
+			<div class="divider"></div>
+			<dl class="nowrap">
+				<dt>3、价值<br>本项目的创新程度、理论意义、应用价值：</dt>
+				<dd>
+					<div class="unit">
+						<textarea 
+							class = "editor" 
+							name = "value"
+							id = "value"
+							rows = "25" 
+							cols = "100" 
+							tools = "full"
+							upImgUrl = "!{editorRoot}xheditor_plugins/multiupload/multiupload.html?uploadurl={{$uploadUrl}}&params={'PHPSESSID':'{{$PHPSESSID}}'}&ext=图片文件(*.jpg;*.jpeg;*.gif;*.png)"
+						>{{$list.value}}</textarea>
+					</div>
+					<div class="buttonActive"><div class="buttonContent">
+					<button type="submit">保存本栏</button></div></div>
+				</dd>
+			</dl>
+
+			<div class="divider"></div>
+			<dl class="nowrap">
+				<dt>4、可行性论证：</dt>
+				<dd>
+					<div class="unit">
+						<textarea 
+							class = "editor" 
+							name = "feasibility"
+							id = "feasibility"
+							rows = "25" 
+							cols = "100" 
+							tools = "full"
+							upImgUrl = "!{editorRoot}xheditor_plugins/multiupload/multiupload.html?uploadurl={{$uploadUrl}}&params={'PHPSESSID':'{{$PHPSESSID}}'}&ext=图片文件(*.jpg;*.jpeg;*.gif;*.png)"
+						>{{$list.feasibility}}</textarea>
+					</div>
+					<div class="buttonActive"><div class="buttonContent">
+					<button type="submit">保存本栏</button></div></div>
+				</dd>
+			</dl>
+
+			<div class="divider"></div>
+			<dl class="nowrap">
+				<dt>5、项目的研究计划方案：</dt>
+				<dd>
+					<div class="unit">
+						<textarea 
+							class = "editor" 
+							name = "plan"
+							id = "content"
+							rows = "25" 
+							cols = "100" 
+							tools = "full"
+							upImgUrl = "!{editorRoot}xheditor_plugins/multiupload/multiupload.html?uploadurl={{$uploadUrl}}&params={'PHPSESSID':'{{$PHPSESSID}}'}&ext=图片文件(*.jpg;*.jpeg;*.gif;*.png)"
+						>{{$list.plan}}</textarea>
+					</div>
+					<div class="buttonActive"><div class="buttonContent">
+					<button type="submit">保存本栏</button></div></div>
+				</dd>
+			</dl>
+			<ul>
+				<li><div class="buttonActive"><div class="buttonContent"><button type="submit">全部保存</button></div></div></li>
+				<li><div class="button">
+					<a class="add" href="{{$smarty.const.__URL__&a=viewdetails&column=2&main_info_id={{$list.main_info_id}}|url}}" target="dialog" width="940" height="550"><span>预览</span></a>
+				</div>
+				</li>				
+		</div>		
+	</form>
+</div>
+

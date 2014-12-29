@@ -1,0 +1,61 @@
+<div class="pageContent">
+	<form method="post" action="{{$smarty.const.__ACTION__|url}}" class="pageForm required-validate" onsubmit="return validateCallback(this, dialogAjaxDone);">
+		<div class="pageFormContent" layoutH="56" >
+			<dl>
+				<dt>项目大类：</dt>
+				<dd>
+					<select name="PID" class="combox required" ref = "TIME" refUrl = "{{$smarty.const.__URL__&a=getprojecttimeintimeset&PID={value}|url}}">
+						<option value="">--请选择--</option>
+						{{html_options options=$project_name selected=$smarty.post.PID}}
+					</select>
+				</dd>
+			</dl>
+			<dl>
+				<dt>项目批次：</dt>
+				<dd>
+					<select name="TIME" id = "TIME" class="combox required">
+						<option value="">--请选择--</option>
+					</select>
+				</dd>		
+			</dl>
+			<div class="divider"></div><br />
+				<dl>
+					<dt>开始报名时间</dt>
+					<dd><input type="text" class="date" name="begin_add_time" readonly = "readonly" value="{{$list['begin_add_time']}}"/></dd>
+				</dl>
+				<dl>
+					<dt>结束报名时间</dt>
+					<dd><input type="text" class="date" name="end_add_time" readonly = "readonly" value="{{$list['end_add_time']}}"/></dd>
+					
+				</dl>
+
+				<dl>
+					<dt>开始中期检查时间</dt>
+					<dd><input type="text" class="date" name="begin_middle_check_time" readonly = "readonly" value="{{$list['begin_middle_check_time']}}"/></dd>
+					
+				</dl>
+				<dl>
+					<dt>结束中期检查时间</dt>
+					<dd><input type="text" class="date" name="end_middle_check_time" readonly = "readonly" value="{{$list['end_middle_check_time']}}"/></dd>
+				</dl>
+
+				<dl>
+					<dt>开始结题评审时间</dt>
+					<dd><input type="text" class="date" name="begin_final_check_time" readonly = "readonly" value="{{$list['begin_final_check_time']}}"/></dd>
+				</dl>
+				<dl>
+					<dt>结束结题评审时间</dt>
+					<dd><input type="text" class="date" name="end_final_check_time" readonly = "readonly" value="{{$list['end_final_check_time']}}"/></dd>				
+				</dl>
+		
+		</div>
+		<div class="formBar">
+			<ul>
+				<li><div class="buttonActive"><div class="buttonContent"><button type="submit">添加</button></div></div></li>
+				<li>
+					<div class="button"><div class="buttonContent"><button type="button" class="close">取消</button></div></div>
+				</li>
+			</ul>
+		</div>
+	</form>
+</div>

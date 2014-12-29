@@ -1,0 +1,4 @@
+[2014-02-16 13:26:40]SQL[256]Table 'project.pro_news_type' doesn't exist[SQL]:SHOW COLUMNS FROM `pro_news_type`C:\xampp\htdocs\project\Library\Log.class.php362
+[2014-02-16 14:01:16]SQL[256]Table 'project.pro_news_type' doesn't exist[SQL]:SHOW COLUMNS FROM `pro_news_type`C:\xampp\htdocs\project\Library\Log.class.php362
+[2014-02-16 14:11:40]SQL[256]Table 'project.pro_news_type' doesn't exist[SQL]:SHOW COLUMNS FROM `pro_news_type`C:\xampp\htdocs\project\Library\Log.class.php362
+[2014-02-16 14:11:42]SQL[256]Table 'project.pro_news_type' doesn't exist[SQL]:SHOW COLUMNS FROM `pro_news_type`C:\xampp\htdocs\project\Library\Log.class.php362

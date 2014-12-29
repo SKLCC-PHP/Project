@@ -1,0 +1,40 @@
+
+<div class="pageContent">
+	<form method="post" action="{{$smarty.const.__URL__&a=$smarty.const.ACTION_NAME|url}}" class="pageForm required-validate" onsubmit="return iframeCallback(this, dialogAjaxDone);" enctype="multipart/form-data">
+		<div class="pageFormContent" layoutH="56">
+			
+			<dl class="nowrap">
+				<dt>所属项目：</dt>
+				<dd>
+					<select name="PID" class="combox required">
+						<option value="">--请选择--</option>
+						{{html_options options=$project_name selected=$smarty.post.PID}}
+					</select>
+				</dd>
+			</dl>
+			<dl>
+				<dt>作用描述：</dt>
+				<dd><textarea class="" name="description" id="remarks" rows="5" cols="80"></textarea></dd>
+				
+			</dl>
+			
+			<dl></dl><dl></dl><dl></dl><dl></dl><dl></dl>
+			
+			<dl >
+				<dt>doc格式模版：</dt>
+				
+                <dd><input type="file" name="address" value="" /></dd>
+            </dl>
+			</dl>
+			
+		</div>
+		<div class="formBar">
+			<ul>
+				<li><div class="buttonActive"><div class="buttonContent"><button type="submit">{{if $smarty.const.ACTION_NAME eq "upload"}}上传{{else}}修改{{/if}}</button></div></div></li>
+				<li>
+					<div class="button"><div class="buttonContent"><button type="button" class="close">取消</button></div></div>
+				</li>
+			</ul>
+		</div>
+	</form>
+</div>

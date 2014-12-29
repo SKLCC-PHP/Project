@@ -1,0 +1,108 @@
+
+<div class="pageContent">
+	
+	<form method="post" action="{{$smarty.const.__URL__&a=updatemymaininfo|url}}" class="pageForm required-validate" onsubmit="return validateCallback(this, dialogAjaxDone);">
+		<div class="pageFormContent" layoutH="56">
+			<input type="hidden" name="id" value="{{$list.id}}">
+			{{if $manager_role neq 'host_student'}}
+			
+			<dl>
+				<dt>项目编号：</dt>
+				<dd><input name="project_id" id="program_id"  type="text" size="20" value="{{$list.program_id}}" alt=""/></dd>
+			</dl>
+			<dl>
+				<dt></dt>
+				<dd></dd>
+			</dl>
+			{{/if}}
+			<dl>
+				<dt>项目名称：</dt>
+				<dd><input name="title" id="title" class="required" type="text" size="30" value="{{$list.title}}" alt=""/></dd>
+			</dl>
+			<dl>
+				<dt>主持人：</dt>
+				<dd><input name="host_student" type="text" size="20" value="{{$manager_info.realname}}" readonly="readonly"/></dd>
+			</dl>
+			<dl>
+				<dt>项目类别：</dt>
+				<dd>
+					<select name="type" class="combox required">
+						<option value="{{$list.type}}" selected=$list.type></option>
+						<option value="一般项目">一般项目</option>
+						<option value="重点项目">重点项目</option>
+						<option value="重大项目预研项目">重大项目预研项目</option>
+						<option value="重大项目">重大项目</option>
+					</select>
+				</dd>
+			</dl>
+
+			<dl>
+				<dt>联系电话</dt>
+				<dd><input name="telephone" type="text" size="30" value="{{$manager_info.telephone}}" readonly="readonly"/></dd>
+			</dl>
+			
+			
+			<dl>
+				<dt>单位名称：</dt>
+				<dd>
+					<select class="combox" name="college_id" class="combox required">
+						<option value="{{$list.college_id}}"></option>
+						{{html_options options=$college selected=$smarty.post.college_id}}
+					</select>
+				</dd>
+			</dl>
+			<dl>
+				<dt>邮箱:</dt>
+				<dd><input name="email" type="text" size="20" value="{{$manager_info['email']}}" readonly="readonly" /></dd>
+			</dl>
+			<dl>
+				<dt>指导老师：</dt>
+				<dd><input name="teacher" type="text" size="23" class="required" value="{{$list.teacher}}" /></dd>
+			</dl>
+			
+			
+			<dl>
+				<dt></dt>
+				<dd></dd>
+			</dl>
+			<dl>
+				<dt>项目组成员：</dt>
+				<dd><input name="member" type="text" size="40" value = "{{$list.member}}"/></dd>
+			</dl>
+			<dl>
+				<dt>(多个成员逗号隔开)</dt>
+				<dd></dd>
+			</dl>
+			<dl>
+				<dt>最高学历：</dt>
+				<dd><select class="combox" name="highest_edu" class="combox required">
+						<option value="{{$list.highest_edu}}" selected=$list.highest_edu></option>
+						<option value="本科生">本科生</option>
+						<option value="研究生">研究生</option>
+					</select>
+				</dd>
+			</dl>
+			
+			<div class="divider"></div>
+			
+			<dl class="nowrap">
+				<dt>备注：</dt>
+				<dd><textarea class="" name="remarks" id="remarks" rows="5" cols="80">{{$list.remarks}}</textarea></dd>
+			</dl>
+			<div class="divider"></div>
+		</div>
+	
+			
+			
+		
+		
+	</form>
+	<div class="formBar">
+		<ul>
+		
+			<li>
+				<div class="button"><div class="buttonContent"><button type="button" class="close">关闭窗口</button></div></div>
+			</li>
+		</ul>
+	</div>
+</div>

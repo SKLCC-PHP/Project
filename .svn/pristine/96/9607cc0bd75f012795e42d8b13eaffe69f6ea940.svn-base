@@ -1,0 +1,37 @@
+
+<div class="pageContent">
+	<form method="post" action="{{$smarty.const.__ACTION__|url}}" class="pageForm required-validate" onsubmit="return validateCallback(this, dialogAjaxDone);">
+		<div class="pageFormContent" layoutH="56" >
+			<div class="tabsContent" style="height: 100px;">
+			<dl>
+				<dt>项目大类名称：</dt>
+				<dd>
+					<select name="PID" id = "PID" class="combox required">
+						<option value="">--请选择--</option>
+						{{html_options options=$project_name selected=$smarty.post.PID}}
+					</select>
+				</dd>		
+			</dl>
+			<div class="divider"></div>
+				<table name = "addteacher" class="list nowrap itemDetail" addButton="新增附件归属" width="100%">
+					<thead>
+						<tr>
+							<th type="text" name="TID[#index#].itemString" size="15" fieldClass="required" >附件归属代号</th>
+							<th type="text" name="type[#index#].itemString" size="20" fieldClass="required" >附件归属名称</th>
+							<th type="del" width="60">操作</th>
+						</tr>
+					</thead>
+					<tbody></tbody>
+				</table>
+			</div>
+		</div>
+		<div class="formBar">
+			<ul>
+				<li><div class="buttonActive"><div class="buttonContent"><button type="submit">添加</button></div></div></li>
+				<li>
+					<div class="button"><div class="buttonContent"><button type="button" class="close">取消</button></div></div>
+				</li>
+			</ul>
+		</div>
+	</form>
+</div>

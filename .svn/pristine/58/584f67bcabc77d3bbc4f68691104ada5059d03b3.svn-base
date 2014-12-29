@@ -1,0 +1,35 @@
+<div class="pageContent">
+	<form method="post" action="{{$smarty.const.__ACTION__&id={{$id}}|url}}" class="pageForm required-validate" onsubmit="return validateCallback(this, dialogAjaxDone);">
+		<div class="pageFormContent" layoutH="56">
+		<input type = "hidden" name = "PID" value = {{$PID}}>
+		<input type = "hidden" name = "TIME" value = {{$TIME}}>
+		<input type = "hidden" name = "PName" value = {{$PName}}>
+			<p>第<font color="red">{{$TIME}}</font>批<font color="red">{{$PName}}</font></p>
+			
+			<div class="divider"></div>
+
+			<div class="tabsContent" style="height: 100px;">
+				<table name = "addteacher" class="list nowrap itemDetail" addButton="新增项目类型" width="100%">
+						<thead>
+							<tr>
+								<th type="text" name="type[#index#].itemString" size="20" fieldClass="required" >项目类型</th>
+								
+								<th type="del" width="60">操作</th>
+							</tr>
+						</thead>
+						<tbody></tbody>
+					</table>
+			</div>
+
+
+		</div>
+		<div class="formBar">
+			<ul>
+				<li><div class="buttonActive"><div class="buttonContent"><button type="submit">添加</button></div></div></li>
+				<li>
+					<div class="button"><div class="buttonContent"><button type="button" class="close">取消</button></div></div>
+				</li>
+			</ul>
+		</div>
+	</form>
+</div>

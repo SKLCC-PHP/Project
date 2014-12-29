@@ -1,0 +1,26 @@
+
+<div class = "unit">
+	<div class = "pageContent">
+		<form method="post" action="{{$smarty.const.__URL__&a=watch|url}}" class="pageForm required-validate" onsubmit="return validateCallback(this, dialogAjaxDone);">
+			<div style="LINE-HEIGHT: 150%; FONT-FAMILY: 仿宋_GB2312; COLOR: black; FONT-SIZE: 24pt; mso-hansi-font-family: 宋体; mso-bidi-font-family: 宋体; mso-font-kerning: 0pt; padding-left:10%; padding-right:15%;" align="center">
+			{{$get_notice.title}}
+			</div>
+			{{if $uid == $tran['stuID']}}
+			<div class = "pageFormContent" layoutH = "100%" width = "100%" style = "padding-left:5%; padding-right:10%;">
+			{{else}}
+			<div class = "pageFormContent" layoutH = "75" width = "100%" style = "padding-left:5%; padding-right:10%;">
+			{{/if}}
+				{{$tran['content']}}
+			</div>
+		{{if $uid == $tran['stuID']}}
+			<div class="formBar">
+			<ul>
+				<li>
+					<div class="button"><a class="edit" href="{{$smarty.const.__URL__&a=update&id=$id|url}}" target="dialog" width="800" height="500"><span>修改</span></a></div>
+				</li>
+			</ul>
+			</div>
+		{{/if}}
+		</form>
+	</div>
+</div>

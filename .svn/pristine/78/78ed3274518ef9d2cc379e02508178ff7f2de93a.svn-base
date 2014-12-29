@@ -1,0 +1,51 @@
+
+<div class="pageContent">
+	<form method="post" action="{{$smarty.const.__URL__&a=upload&PID=$PID&TIME=$TIME|url}}" class="pageForm required-validate" onsubmit="return iframeCallback(this, dialogAjaxDone);" enctype="multipart/form-data">
+		<div class="pageFormContent" layoutH="56">
+			&nbsp&nbsp<b>提示：</b>附件以自己的姓名命名，文档统一上传pdf格式，汇报材料打包后上传</br></br>
+			&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+			通知时间截止前可删除然后重新上传新附件</br></br>
+			<dl class="nowrap">
+				<dt>项目名称：</dt>
+				<dd>
+					<select class="combox required" name="project_main_info_id" ref = "TID" refUrl = "{{$smarty.const.__URL__&a=getprojectattachmenttype&project_main_info_id={value}|url}}">
+						<option value="">--项目名称--</option>
+						{{html_options options=$cur_main_info_title selected=$smarty.post.id}}
+					</select>
+				</dd>
+			</dl>
+
+			<dl class="nowrap">
+				<dt>附件归属：</dt>
+				<dd>
+					<select class="combox required" id = "TID" name="type">
+						<option value="">--附件归属--</option>
+					</select>
+				</dd>
+			</dl>
+			<dl>
+				<dt>描述：</dt>
+				<dd><textarea class="" name="description" id="remarks" rows="5" cols="80"></textarea></dd>
+				
+			</dl>
+			
+			<dl></dl><dl></dl><dl></dl><dl></dl><dl></dl>
+			
+			<dl >
+				<dt>附件：</dt>
+				
+                <dd><input type="file" name="address" value="" /></dd>
+            </dl>
+			</dl>
+			
+		</div>
+		<div class="formBar">
+			<ul>
+				<li><div class="buttonActive"><div class="buttonContent"><button type="submit">{{if $smarty.const.ACTION_NAME eq "upload"}}上传{{else}}修改{{/if}}</button></div></div></li>
+				<li>
+					<div class="button"><div class="buttonContent"><button type="button" class="close">取消</button></div></div>
+				</li>
+			</ul>
+		</div>
+	</form>
+</div>

@@ -1,0 +1,1 @@
+[2014-02-16 09:23:59]WARN[2]mysql_connect() [function.mysql-connect]: Access denied for user 'root'@'localhost' (using password: NO)C:\xampp\htdocs\project\Common\Db\DbMysql.class.php46

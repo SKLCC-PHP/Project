@@ -1,0 +1,37 @@
+
+<div class="pageContent">
+	<form method="post" action="{{$smarty.const.__URL__&a=updateprojectname|url}}" class="pageForm required-validate" onsubmit="return validateCallback(this, dialogAjaxDone);">
+		<div class="pageFormContent" layoutH="56">
+			<p>
+				<label>提示：</label>一旦该项目有学生参加后不得修改
+			</p>
+			<p>
+				<input type = "hidden" name = "old_PID" value = "{{$list.PID}}">
+				<input type = "hidden" name = "old_PType" value = "{{$list.PType}}">
+				<input type = "hidden" name = "old_TIME" value = "{{$list.TIME}}">
+				<label>项目代号：</label>
+				<input name="PID" class="required" type="text" size="10" value="{{$list.PID}}" alt=""/>
+			</p>
+			<p>
+				<label>项目名称：</label>
+				<input name="PName" class="required" type="text" size="30" value="{{$list.PName}}" alt=""/>
+			</p>
+			<p>
+				<label>项目批次：</label>
+				<input name="TIME" class="required" type="text" size="30" value="{{$list.TIME}}" alt=""/>
+			</p>
+			<p>
+				<label>项目类型：</label>
+				<input name="PType" class="required" type="text" size="30" value="{{$list.PType}}" alt=""/>
+			</p>
+		</div>
+		<div class="formBar">
+			<ul>
+				<li><div class="buttonActive"><div class="buttonContent"><button type="submit">修改</button></div></div></li>
+				<li>
+					<div class="button"><div class="buttonContent"><button type="button" class="close">取消</button></div></div>
+				</li>
+			</ul>
+		</div>
+	</form>
+</div>

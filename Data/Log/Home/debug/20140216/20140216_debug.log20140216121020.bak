@@ -1,0 +1,1 @@
+[2014-02-16 12:08:43]SQL[256]Table 'project.pro_news' doesn't exist[SQL]:SELECT COUNT(*) AS ts_count FROM `pro_news`  C:\xampp\htdocs\project\Library\Log.class.php362

@@ -1,0 +1,117 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<html>
+<head>
+ 	<title></title>
+ 	<input type = "hidden" id = "College_Number" value = "{{$College_Number}}">
+	<input type = "hidden" id = "College_CollegeId" value = "{{$College_CollegeId}}">
+<!-- 	<input type = "hidden" id = "College_Name" value = "{{$College_Name}}"> -->
+<style type="text/css">
+	.zebra td, .zebra th {
+    padding: 4px;
+    border-bottom: 1px dotted #EDEDED; 
+    text-align: left;
+	}
+
+	.zebra th {
+	    text-align: left;
+	    text-shadow: 0 1px 0 rgba(255,255,255,.5); 
+	    border-bottom: 1px solid #A0A0E0;
+	    background-color: #eee;
+	    background-image: -webkit-gradient(linear, left top, left bottom, from(#f5f5f5), to(#eee));
+	    background-image: -webkit-linear-gradient(top, #A0A0E0, #eee);
+	    background-image:    -moz-linear-gradient(top, #A0A0E0, #eee);
+	    background-image:     -ms-linear-gradient(top, #A0A0E0, #eee);
+	    background-image:      -o-linear-gradient(top, #A0A0E0, #eee); 
+	    background-image:         linear-gradient(top, #A0A0E0, #eee);
+	}
+
+	.zebra th:first-child {
+	    -moz-border-radius: 6px 0 0 0;
+	    -webkit-border-radius: 6px 0 0 0;
+	    border-radius: 6px 0 0 0;  
+	}
+
+	.zebra th:last-child {
+	    -moz-border-radius: 0 6px 0 0;
+	    -webkit-border-radius: 0 6px 0 0;
+	    border-radius: 0 6px 0 0;
+	}
+
+	.zebra th:only-child{
+	    -moz-border-radius: 6px 6px 0 0;
+	    -webkit-border-radius: 6px 6px 0 0;
+	    border-radius: 6px 6px 0 0;
+	}
+
+	.zebra tfoot td {
+	    border-bottom: 0;
+	    border-top: 1px solid #fff;
+	    background-color: #f1f1f1;  
+	}
+
+	.zebra tfoot td:first-child {
+	    -moz-border-radius: 0 0 0 6px;
+	    -webkit-border-radius: 0 0 0 6px;
+	    border-radius: 0 0 0 6px;
+	}
+
+	.zebra tfoot td:last-child {
+	    -moz-border-radius: 0 0 6px 0;
+	    -webkit-border-radius: 0 0 6px 0;
+	    border-radius: 0 0 6px 0;
+	}
+
+	.zebra tfoot td:only-child{
+	    -moz-border-radius: 0 0 6px 6px;
+	    -webkit-border-radius: 0 0 6px 6px
+	    border-radius: 0 0 6px 6px
+	}
+</style>
+
+<script type="text/javascript" charset="utf-8">
+	var College_Number_text_temp = document.getElementById('College_Number').value;
+	// alert(College_Number_text_temp);
+	var College_Number_text = College_Number_text_temp.split('|');
+	// alert(College_Number_text[0]);
+	var College_CollegeId_text = document.getElementById('College_CollegeId').value;
+	// alert(College_CollegeId_text);
+	var College_Number = new Array();
+	var College_CollegeId = new Array(College_CollegeId_text.split(','));
+	for (var i = 0; i < College_Number_text.length; i++) 
+	{
+		College_Number.push(College_Number_text[i].split(','));
+	};
+	// alert(College_Number[0]);
+	// alert(College_Number[1]);
+	// alert(College_CollegeId);
+    var options = {
+    	stacked: false,
+    	gutter:20,
+		axis: "0 0 1 1", // Where to put the labels (trbl)
+		axisystep: 10 // How many x interval labels to render (axisystep does the same for the y axis)
+	};
+	$(function() {
+        // Creates canvas
+    	var r = Raphael("chartHolder");
+        var data = College_Number;
+        
+        // stacked: false
+		var chart1 = r.barchart(90, 40, 2*College_CollegeId[0].length*15, 220, data, options).hover(function() {
+            this.flag = r.popup(this.bar.x, this.bar.y, this.bar.value).insertBefore(this);
+        }, function() {
+            this.flag.animate({opacity: 0}, 500, ">", function () {this.remove();});
+        });
+		chart1.label(College_CollegeId,true);
+	});
+</script>
+</head>
+
+<body style="background-color:#EEEEEE">
+	
+	<div id="chartHolder"></div>
+	<h1 align="center">{{$Project_Name}}<h1>
+	{{$College_Name}}
+</body>
+</html>  
+    

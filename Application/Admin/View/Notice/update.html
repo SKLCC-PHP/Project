@@ -1,0 +1,25 @@
+<div class = "pageContent">
+	<form method="post" action="{{$smarty.const.__URL__&a=update&id={id}|url}}" class="pageForm required-validate" onsubmit="return validateCallback(this, dialogAjaxDone);">
+	<input type="hidden" name = "id" value = "{{$notice_info.id}}">
+		<div class="pageFormContent" layoutH="56">
+			<dl class="nowrap">
+				<dt>发文标题</dt>
+				<dd><input name="title" class="required" type="text" size="100" value="{{$notice_info.title}}" alt=""/></dd>
+			</dl>
+			<dl>
+				<dt>正文</dt>
+				<dd><div class="unit">
+							<textarea class="editor" name="content" rows="22" cols="80">{{$notice_info.content}}</textarea>
+					</div></dd>
+			</dl>
+		</div>
+		<div class="formBar">
+			<ul>
+				<li><div class="buttonActive"><div class="buttonContent"><button type="submit">修改</button></div></div></li>
+				<li>
+					<div class="button"><div class="buttonContent"><button type="button" class="close">取消</button></div></div>
+				</li>
+			</ul>
+		</div>
+	</form>
+</div>

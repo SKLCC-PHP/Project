@@ -1,0 +1,161 @@
+<!--添加我的项目-->
+<div class="pageContent">
+	<form method="post" action="{{$smarty.const.__ACTION__|url}}" class="pageForm required-validate" onsubmit="return validateCallback(this, navTabAjaxDone);">
+		<div class="pageFormContent" layoutH="30">
+			<input type="hidden" name="id" value="{{$project_main_info.id}}">
+			<dl>
+				<dt>项目大类：</dt>
+				<dd>
+					<select name="PID" class="combox required" ref = "TIME" refUrl = "{{$smarty.const.__URL__&a=getprojecttime&project_name={value}|url}}">
+						<option value="{{$project_main_info.PID}}"></option>
+						{{html_options options=$project_name selected=$smarty.post.PID}}
+					</select>
+				</dd>
+			</dl>
+			<dl>
+				<dt>项目批次：</dt>
+				<dd>
+					<select name="TIME" id = "TIME" class="combox required" ref = "type" refUrl = "{{$smarty.const.__URL__&a=getprojecttype&project_name_TIME={value}|url}}">
+						<option value="{{$project_main_info.TIME}}">{{$project_main_info.TIME}}</option>
+					
+					</select>
+				</dd>		
+			</dl>
+			<div class="divider"></div>
+			<dl>
+				<dt>项目名称：</dt>
+				<dd><input name="title" id="title" class="required" type="text" size="30" value="{{$project_main_info.title}}" alt=""/></dd>
+			</dl>
+			<dl>
+				<dt>主持人：</dt>
+				<dd><input name="host_student" type="text" size="20" value="{{$manager_info.realname}}" readonly="readonly"/></dd>
+			</dl>
+			
+			<dl>
+				<dt>申报类型：</dt>
+				<dd>
+					<select name="type" id = "type" class="combox required">
+						<option value="{{$project_main_info.type}}">{{$project_main_info.type}}</option>
+					</select>
+				</dd>
+			</dl>
+
+			<dl>
+				<dt>联系电话</dt>
+				<dd><input name="telephone" type="text" size="20" value="{{$manager_info.telephone}}" readonly="readonly"/></dd>
+			</dl>
+			
+			
+			<dl>
+				<dt>单位名称：</dt>
+				<dd>
+					<select name="college_id" class="combox required">
+						<option value="{{$project_main_info.college_id}}"></option>
+						{{html_options options=$college selected=$smarty.post.college_id}}
+					</select>
+				</dd>
+			</dl>
+			<dl>
+				<dt>邮箱:</dt>
+				<dd><input name="email" type="text" size="20" value="{{$manager_info['email']}}" readonly="readonly" /></dd>
+			</dl>
+		<div class="divider"></div>
+		
+			<div class="tabsContent" style="height: 150px;">
+				<div>
+					<table name = "addmember"class="list nowrap itemDetail" addButton="添加成员" width="100%">
+						<thead>
+							<tr>
+								<th type="text" name="member_stuID[#index#].itemString" size="12" fieldClass="required" >学号</th>
+								<th type="text" name="member_name[#index#].itemString" size="12" fieldClass="required" >姓名</th>
+								<th type="text" name="member_telephone[#index#].itemString" size="12" fieldClass="required" >手机</th>
+								<!-- <th type="lookup" name="member_college[#index#].org.orgName"  lookupGroup="member_college[#index#].org" lookupUrl="{{$smarty.const.__URL__&a=selectcollege|url}}"  size="20" fieldClass="required" title="选择">学院</th> -->
+								<th type="text" name="member_specialty[#index#].itemString" size = "12" fieldClass="required">专业</th>
+								<th type="text" name="member_task[#index#].itemString" size="20" fieldClass="required" >承担内容</th>
+								<th type="del" width="60">操作</th>
+							</tr>
+						</thead>
+						<tbody>
+							{{section name=loop loop=$memberlist}}
+								<tr class="unitBox">
+									<td>
+										<input type="text" name="member_stuID[].itemString'" value="{{$memberlist[loop][0]}}" size="12" class="required textInput" >
+									</td>
+									<td>
+										<input type="text" name="member_name[].itemString" value="{{$memberlist[loop][1]}}" size="12" class="required textInput" >
+									</td>
+									<td>
+										<input type="text" name="member_telephone[].itemString" value="{{$memberlist[loop][2]}}" size="12" class="required textInput" >
+									</td>
+									<td>
+										<input type="text" name="member_specialty[].itemString" value="{{$memberlist[loop][4]}}" size="12" class="required textInput" >
+									</td>
+									<td>
+										<input type="text" name="member_task[].itemString" value="{{$memberlist[loop][5]}}" size="20" class="required textInput" >
+									</td>
+									<td>
+										<a href="javascript:void(0)" class="btnDel ">删除</a>
+									</td>
+								</tr>
+							{{/section}}
+						</tbody>
+					</table>
+				</div>
+			</div>
+			
+		<div class="divider"></div>
+
+		
+			<div class="tabsContent" style="height: 100px;">
+				<div>
+					<table name = "addteacher" class="list nowrap itemDetail" addButton="添加指导老师" width="100%">
+						<thead>
+							<tr>
+								<th type="text" name="teacher_name[#index#].itemString" size="12" fieldClass="required" >姓名</th>
+								<th type="text" name="teacher_title[#index#].itemString" size="12" fieldClass="required" >职称</th>
+								<!-- <th type="lookup" name="teacher_college[#index#].org.orgName" lookupGroup="teacher_college[#index#].org" lookupUrl="{{$smarty.const.__URL__&a=selectcollege|url}}"  size="20" fieldClass="required" title="选择">单位名称</th> -->
+								<th type="text" name="teacher_research[#index#].itemString" size="20" fieldClass="required">研究方向</th>
+								<th type="del" width="60">操作</th>
+							</tr>
+						</thead>
+						<tbody>
+							{{section name=loop loop=$teacherlist}}
+								<tr class="unitBox">
+									<td>
+										<input type="text" name="teacher_name[].itemString'" value="{{$teacherlist[loop][0]}}" size="12" class="required textInput" >
+									</td>
+									<td>
+										<input type="text" name="teacher_title[].itemString" value="{{$teacherlist[loop][1]}}" size="12" class="required textInput" >
+									</td>
+									<td>
+										<input type="text" name="teacher_research[].itemString" value="{{$teacherlist[loop][3]}}" size="20" class="required textInput" >
+									</td>
+						
+									<td>
+										<a href="javascript:void(0)" class="btnDel ">删除</a>
+									</td>
+								</tr>
+							{{/section}}
+						</tbody>
+					</table>
+				</div>
+			
+		</div>
+			
+		<dl class="nowrap">
+			<dt>备注：</dt>
+			<dd><textarea class="" name="remarks" id="remarks" rows="5" cols="80">{{$project_main_info.remarks}}</textarea></dd>
+		</dl>
+		<div class="divider"></div>
+		<div class="formBar">
+			<ul>
+				<li><div class="buttonActive"><div class="buttonContent"><button type="submit">修改</button></div></div></li>
+				<li>
+					<div class="button"><div class="buttonContent"><button type="button" class="close">取消</button></div></div>
+				</li>
+			</ul>
+		</div>
+	</div>	
+	</form>
+	
+</div>

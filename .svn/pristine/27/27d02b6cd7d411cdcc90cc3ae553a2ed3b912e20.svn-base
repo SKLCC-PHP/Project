@@ -1,0 +1,26 @@
+
+<div class="pageContent">
+	<form method="post" action="{{$smarty.const.__ACTION__|url}}" class="pageForm required-validate" onsubmit="return validateCallback(this, dialogAjaxDone);">
+		<div class="pageFormContent" layoutH="56" >
+			<p>
+				<label>提示：</label>一旦该项目有学生参加后不得修改删除
+			</p>
+			<p>
+				<label>项目代号：</label>
+				<input name="PID" id = "PID" class="required" type="text" size="10" value="" alt=""/>
+			</p>
+			<p>
+				<label>项目名称：</label>
+				<input name="PName" id = "PName" class="required" type="text" size="30" value="" alt=""/>
+			</p>
+		</div>
+		<div class="formBar">
+			<ul>
+				<li><div class="buttonActive"><div class="buttonContent"><button type="submit">添加</button></div></div></li>
+				<li>
+					<div class="button"><div class="buttonContent"><button type="button" class="close">取消</button></div></div>
+				</li>
+			</ul>
+		</div>
+	</form>
+</div>

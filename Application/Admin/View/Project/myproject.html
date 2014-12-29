@@ -1,0 +1,95 @@
+<!--我的项目展示列表-->
+<form id="pagerForm" method="post" action="{{$smarty.const.__ACTION__|url}}">
+	<input type="hidden" name="pageNum" value="{{$page.pageNum}}" />
+	<input type="hidden" name="numPerPage" value="{{$page.numPerPage}}" />
+	<input type="hidden" name="orderField" value="{{$page.orderField}}" />
+	<input type="hidden" name="orderDirection" value="{{$page.orderDirection}}" />
+	<input type="hidden" name="id" value="{{$smarty.post.id}}">
+	<input type="hidden" name="project_id" value="{{$smarty.post.project_id}}">
+	<input type="hidden" name="type" value="{{$smarty.post.type}}">
+	<input type="hidden" name="title" value="{{$smarty.post.title}}" />
+
+</form>
+
+<div class="pageHeader">
+	<form onsubmit="return navTabSearch(this);" action="{{$smarty.const.__ACTION__|url}}" method="post">
+	<div class="searchBar">
+		<table class="searchContent">
+			<tr>
+				
+				<td>
+					项目编号：<input type="text" name="project_id" value="{{$smarty.post.project_id}}" />
+				</td>
+				<td>
+					项目名称：<input type="text" name="title" value="{{$smarty.post.title}}" />
+				</td>
+				<td>
+					<div class="subBar">
+						<ul>
+							<li><div class="buttonActive"><div class="buttonContent"><button type="submit">检索</button></div></div></li>
+							<li><div class="button"><div class="buttonContent"><button type="button" onclick="return navTabSearch(this);">刷新</button></div></div></li>
+						</ul>
+					</div>
+				</td>
+			</tr>
+		</table>
+		
+	</div>
+	</form>
+</div>
+<div class="pageContent">
+	<div class="panelBar">
+		<ul class="toolBar">
+			<li><a class="add" href="{{$smarty.const.__URL__&a=addmyproject|url}}" target="navTab" width="820" height="450"><span>新增项目</span></a></li>
+			<li class="line">line</li>
+			
+		</ul>
+	</div>
+	<table class="table" width="100%" layoutH="114">
+		<thead>
+			<tr>
+				<th orderField="project_id" class="{{$page.orderDirection}}">项目编号</th>
+				<th>项目大类</th>
+				<th>项目批次</th>
+				<th>项目名称</th>
+				<th>类型</th>
+				<th>单位</th>
+				<th>中期检查</th>
+				<th>结题评审</th>
+				<th>详细材料</th>
+				<th>修改</th>
+				<th>删除</th>
+			</tr>
+		</thead>
+		<tbody>
+			{{section name=loop loop=$list}}
+			<tr target="id" rel="{{$list[loop].id}}">
+			
+				<input name="id" value="{{$list[loop].id}}" type="hidden">
+				<td>{{$list[loop].project_id}}</td>
+				<td>{{$list[loop].PName}}</td>
+				<td>{{$list[loop].TIME}}</td>
+				<td>{{$list[loop].title}}</td>
+				<td>{{$list[loop].type}}</td>
+				<td>{{$list[loop].college_name}}</td>	
+				<td>{{$list[loop].middle_check}}</td>
+				<td>{{$list[loop].final_check}}</td>
+				<td>
+					<a target="navTab" href="{{$smarty.const.__URL__&a=mydetails&id=$list[loop].id|url}}" class="btnAttach">详细信息</a>
+				</td>
+				<td>
+					{{if $list[loop].show_delete_botton eq true}}
+					<a target="navTab" href="{{$smarty.const.__URL__&a=updatemyproject&id=$list[loop].id|url}}" class="btnEdit"  title="修改">修改</a>
+					{{/if}}
+				</td>
+				<td>
+					{{if $list[loop].show_delete_botton eq true}}
+					<a target="ajaxTodo" href="{{$smarty.const.__URL__&a=delete&id=$list[loop].id|url}}" class="btnDel"  title="确定要删除吗?删除不可恢复，只可以在项目申报期间删除">删除</a>
+					{{/if}}
+				</td>
+			</tr>
+		    {{/section}}
+		</tbody>
+	</table>
+	{{include file="Include/page.html"}}
+</div>

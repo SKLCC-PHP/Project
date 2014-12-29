@@ -1,0 +1,107 @@
+<div class="pageContent">
+	<form method="post" action="{{$smarty.const.__URL__&a=updatemyfinalapplication|url}}" class="pageForm required-validate" onsubmit="return validateCallback(this, navTabAjaxDone);">
+		<div class="pageFormContent" layoutH="56">
+		<input type="hidden" name="id" value="{{$list.main_info_id}}">
+		<input type = "hidden" name = "stuID" value = "{{$list.stuID}}">
+		<input type = "hidden" name = "PID" value = "{{$PID}}">
+		<input type = "hidden" name = "TIME" value = "{{$TIME}}">
+		<b style = "color: red">{{$close_message}}</b><br />
+		<b style = "color: red">{{$message}}</b>
+			<dl class="nowrap">
+				按要求填写好如下栏目
+				
+			</dl>
+			
+			<div class="divider"></div>
+			<dl class="nowrap">
+				<dt>1、项目计划达到的目标：</dt>
+				<dd>
+					<div class="unit">
+						<textarea 
+							class = "editor" 
+							name = "plan"
+
+							id = "plan"
+							rows = "25" 
+							cols = "100" 
+							tools = "full"
+							upImgUrl = "!{editorRoot}xheditor_plugins/multiupload/multiupload.html?uploadurl={{$uploadUrl}}&params={'PHPSESSID':'{{$PHPSESSID}}'}&ext=图片文件(*.jpg;*.jpeg;*.gif;*.png)"
+						>{{$list.plan}}</textarea>
+					</div>
+					<div class="buttonActive"><div class="buttonContent">
+					<button type="submit">保存本栏</button></div></div>
+					
+				</dd>
+			</dl>
+
+			<div class="divider"></div>
+			<dl class="nowrap">
+				<dt>2、项目实际达到的目标（具体内容及主要特色）：</dt>
+				<dd>
+					<div class="unit">
+						<textarea 
+							class = "editor" 
+							name = "real"
+							id = "real"
+							rows = "25" 
+							cols = "100" 
+							tools = "full"
+							upImgUrl = "!{editorRoot}xheditor_plugins/multiupload/multiupload.html?uploadurl={{$uploadUrl}}&params={'PHPSESSID':'{{$PHPSESSID}}'}&ext=图片文件(*.jpg;*.jpeg;*.gif;*.png)"
+						>{{$list.real}}</textarea>
+					</div>
+					<div class="buttonActive"><div class="buttonContent">
+					<button type="submit">保存本栏</button></div></div>
+				</dd>
+			</dl>
+			
+			<div class="divider"></div>
+			<dl class="nowrap">
+				<dt>3、项目取得的主要成果（注明：申请专利情况、论文发表的刊物及其日期、出版专著的出版社及其日期，咨询、调查报告应用单位等）：</dt>
+				<dd>
+					<div class="unit">
+						<textarea 
+							class = "editor" 
+							name = "result"
+							id = "result"
+							rows = "25" 
+							cols = "100" 
+							tools = "full"
+							upImgUrl = "!{editorRoot}xheditor_plugins/multiupload/multiupload.html?uploadurl={{$uploadUrl}}&params={'PHPSESSID':'{{$PHPSESSID}}'}&ext=图片文件(*.jpg;*.jpeg;*.gif;*.png)"
+						>{{$list.result}}</textarea>
+					</div>
+					<div class="buttonActive"><div class="buttonContent">
+					<button type="submit">保存本栏</button></div></div>
+				</dd>
+			</dl>
+
+			<div class="divider"></div>
+			<dl class="nowrap">
+				<dt>4、成果应用情况或应用前景（主要技术指标，经济与社会效益）：</dt>
+				<dd>
+					<div class="unit">
+						<textarea 
+							class = "editor" 
+							name = "application"
+							id = "application"
+							rows = "25" 
+							cols = "100" 
+							tools = "full"
+							upImgUrl = "!{editorRoot}xheditor_plugins/multiupload/multiupload.html?uploadurl={{$uploadUrl}}&params={'PHPSESSID':'{{$PHPSESSID}}'}&ext=图片文件(*.jpg;*.jpeg;*.gif;*.png)"
+						>{{$list.application}}</textarea>
+					</div>
+					<div class="buttonActive"><div class="buttonContent">
+					<button type="submit">保存本栏</button></div></div>
+				</dd>
+			</dl>
+
+			<ul>
+				<li><div class="buttonActive"><div class="buttonContent"><button type="submit">全部保存</button></div></div></li>
+				<li><div class="button">
+					<a class="add" href="{{$smarty.const.__URL__&a=viewdetails&column=4&main_info_id={{$list.main_info_id}}|url}}" target="dialog" width="940" height="550"><span>预览</span></a>
+				</div>
+				</li>
+			</ul>
+		</div>
+		
+	</form>
+</div>

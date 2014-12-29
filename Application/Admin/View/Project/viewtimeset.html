@@ -1,0 +1,90 @@
+<!--表单项目展示首页-->
+<form id="pagerForm" method="post" action="{{$smarty.const.__ACTION__|url}}">
+	<input type="hidden" name="pageNum" value="{{$page.pageNum}}" />
+	<input type="hidden" name="numPerPage" value="{{$page.numPerPage}}" />
+	<input type="hidden" name="orderField" value="{{$page.orderField}}" />
+	<input type="hidden" name="orderDirection" value="{{$page.orderDirection}}" />
+	<input type="hidden" name="PID" value="{{$smarty.post.PID}}" />
+	<input type="hidden" name="TIME" value="{{$smarty.post.TIME}}" />
+
+</form>
+
+<div class="pageHeader">
+	<form onsubmit="return navTabSearch(this);" action="{{$smarty.const.__ACTION__|url}}" method="post">
+	<div class="searchBar">
+		<table class="searchContent">
+			<tr>
+				<td>
+					<select class="combox" name="PID">
+						<option value="">--项目名称-</option>
+						{{html_options options=$project_name selected=$smarty.post.PID}}
+					</select>
+				</td>
+				<td>
+					批次：<input type="text" name="TIME" value="{{$smarty.post.TIME}}" />
+				</td>
+			
+				<td>
+					<div class="subBar">
+						<ul>
+							<li><div class="buttonActive"><div class="buttonContent"><button type="submit">检索</button></div></div></li>
+							<li><div class="button"><div class="buttonContent"><button type="button" onclick="return navTabSearch(this);">刷新</button></div></div></li>
+						</ul>
+					</div>
+				</td>
+			</tr>
+		</table>
+		
+	</div>
+	</form>
+</div>
+<div class="pageContent">
+	<div class="panelBar">
+		<ul class="toolBar">
+			<li><a class="add" href="{{$smarty.const.__URL__&a=addtimeset|url}}" target="dialog" width="800" height="300"><span>新增项目时间</span></a></li>
+			<li><a class="edit" href="{{$smarty.const.__URL__&a=updatetimeset&id={id}|url}}" target="dialog" width="800" height="300"><span>修改项目时间</span></a></li>
+		</ul>
+
+	</div>
+	<table class="table" width="100%" layoutH="114">
+		<thead>
+			<tr>
+				<th>项目代号</th>
+				<th>项目名称</th>
+				<th>批次</th>
+				<th>开始时间</th>
+				<th>中期时间</th>
+				<th>结题时间</th>
+				<!-- <th>删除</th> -->
+			</tr>
+		</thead>
+		<tbody>
+			{{section name=loop loop=$list}}
+			<tr target="id" rel="{{$list[loop].id}}">
+				<td>{{$list[loop].PID}}</td>
+				<td>{{$project_name[$list[loop].PID]}}</td>
+				<td>{{$list[loop].TIME}}</td>
+				<td>
+					{{if $list[loop]['begin_add_time'] neq '' or $list[loop]['edd_add_time'] neq ''}}
+						{{$list[loop]['begin_add_time']}}—{{$list[loop]['end_add_time']}}
+					{{/if}}
+				</td>
+				<td>
+					{{if $list[loop]['begin_middle_check_time'] neq '' or $list[loop]['end_middle_check_time'] neq ''}}
+						{{$list[loop]['begin_middle_check_time']}}—{{$list[loop]['end_middle_check_time']}}
+					{{/if}}
+				</td>
+				<td>
+					{{if $list[loop]['begin_final_check_time'] neq '' or $list[loop]['end_final_check_time'] neq ''}}
+						{{$list[loop]['begin_final_check_time']}}—{{$list[loop]['end_final_check_time']}}
+					{{/if}}
+				</td>
+				<!-- <td>
+					<a target="ajaxTodo" href="{{$smarty.const.__URL__&a=deletetimeset&id={{$list[loop].id}}|url}}" class="btnDel" title="确定要删除吗?">删除</a>
+				</td> -->
+			</tr>
+		    {{/section}}
+		</tbody>
+	</table>
+	{{include file="Include/page.html"}}
+</div>

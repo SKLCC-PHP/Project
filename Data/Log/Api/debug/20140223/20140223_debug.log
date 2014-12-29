@@ -1,0 +1,7 @@
+[2014-02-23 11:21:39]ERROR[1]Maximum execution time of 30 seconds exceededC:\xampp\htdocs\project\Library\Session.class.php16
+[2014-02-23 13:33:03]WARN[2]mysql_connect() [function.mysql-connect]: [2002] 由于连接方在一段时间后没有正确答复或连接的主机没有反应，连接尝试失败。 (trying to connect via tcp://192.168.135.117:3306)C:\xampp\htdocs\project\Common\Db\DbMysql.class.php46
+[2014-02-23 13:33:09]WARN[2]mysql_connect() [function.mysql-connect]: [2002] 由于连接方在一段时间后没有正确答复或连接的主机没有反应，连接尝试失败。 (trying to connect via tcp://192.168.135.117:3306)C:\xampp\htdocs\project\Common\Db\DbMysql.class.php46
+[2014-02-23 13:33:12]WARN[2]mysql_connect() [function.mysql-connect]: [2002] 由于连接方在一段时间后没有正确答复或连接的主机没有反应，连接尝试失败。 (trying to connect via tcp://192.168.135.117:3306)C:\xampp\htdocs\project\Common\Db\DbMysql.class.php46
+[2014-02-23 13:33:15]WARN[2]mysql_connect() [function.mysql-connect]: [2002] 由于连接方在一段时间后没有正确答复或连接的主机没有反应，连接尝试失败。 (trying to connect via tcp://192.168.135.117:3306)C:\xampp\htdocs\project\Common\Db\DbMysql.class.php46
+[2014-02-23 13:33:18]WARN[2]mysql_connect() [function.mysql-connect]: [2002] 由于连接方在一段时间后没有正确答复或连接的主机没有反应，连接尝试失败。 (trying to connect via tcp://192.168.135.117:3306)C:\xampp\htdocs\project\Common\Db\DbMysql.class.php46
+[2014-02-23 13:33:21]WARN[2]mysql_connect() [function.mysql-connect]: [2002] 由于连接方在一段时间后没有正确答复或连接的主机没有反应，连接尝试失败。 (trying to connect via tcp://192.168.135.117:3306)C:\xampp\htdocs\project\Common\Db\DbMysql.class.php46

@@ -1,0 +1,82 @@
+
+<form id="pagerForm" method="post" action="{{$smarty.const.__ACTION__|url}}">
+	<input type="hidden" name="pageNum" value="{{$page.pageNum}}" />
+	<input type="hidden" name="numPerPage" value="{{$page.numPerPage}}" />
+	<input type="hidden" name="orderField" value="{{$page.orderField}}" />
+	<input type="hidden" name="orderDirection" value="{{$page.orderDirection}}" />
+	<input type="hidden" name="PID" value="{{$smarty.post.PID}}">
+
+</form>
+
+<div class="pageHeader">
+	<form onsubmit="return navTabSearch(this);" action="{{$smarty.const.__ACTION__|url}}" method="post">
+	<div class="searchBar">
+		<table class="searchContent">
+			<tr>
+				<td>
+					<select class="combox" name="PID">
+						<option value="">--项目大类--</option>
+							{{html_options options=$project_name selected=$smarty.post.PID}}
+					</select>
+				</td>
+				<td>
+					<div class="subBar">
+						<ul>
+							<li><div class="buttonActive"><div class="buttonContent"><button type="submit">检索</button></div></div></li>
+							<li><div class="button"><div class="buttonContent"><button type="button" onclick="return navTabSearch(this);">刷新</button></div></div></li>
+						</ul>
+					</div>
+				</td>
+			</tr>
+		</table>
+		
+	</div>
+	</form>
+</div>
+<div class="pageContent">
+	<div class="panelBar">
+		<ul class="toolBar">
+			<li><a class="add" href="{{$smarty.const.__URL__&a=upload|url}}" target="dialog" width = "800" height= "500"><span>添加附件</span></a></li><li class="line">line</li>
+		</ul>
+	</div>
+	<table class="table" width="100%" layoutH="114">
+		<thead>
+			<tr>
+				<th>项目大类</th>
+				<th>项目名称</th>
+				<th>附件名称</th>
+				<th>附件归属</th>
+
+				<th>上传时间</th>
+			
+				<th>预览</th>
+				<th>下载</th>
+				<th>删除</th>
+				
+			</tr>
+		</thead>
+		<tbody>
+			{{section name=loop loop=$list}}
+			<tr target="id" rel="{{$list[loop].id}}">
+				<td>{{$list[loop].PName}}</td>
+				<td>{{$list[loop].title}}</td>
+				<td>{{$list[loop].name}}</td>
+				<td>{{$list[loop].type}}</td>
+				<td>{{$list[loop].create_time}}</td>
+				<td>
+					{{if $list[loop].type neq '中期汇报ppt等' and $list[loop].type neq '结题汇报ppt等'}}
+					<a target = "_blank" class="btnLook" href="{{$smarty.const.__SHARE__upload/}}{{$list[loop].address}}" >预览|</a>
+					{{/if}}
+				</td>
+				<td>
+					<a class="btnSelect" href="{{$smarty.const.__URL__&a=download&address=$list[loop].address&stuID=$list[loop].stuID|url}}" >下载</a>
+				</td>
+				<td>
+					<a target="ajaxTodo" href="{{$smarty.const.__URL__&a=delete&ids=$list[loop].id|url}}" class="btnDel" title="确定要删除吗？如是上传文件错误，可删除后重新上传">删除</a>
+				</td>
+			</tr>
+		    {{/section}}
+		</tbody>
+	</table>
+	{{include file="Include/page.html"}}
+</div>

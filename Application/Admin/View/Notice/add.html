@@ -1,0 +1,25 @@
+<div class = "pageContent">
+	<form method = "post" action = "{{$smarty.const.__URL__&a=add|url}}" class="pageForm required-validate" onsubmit="return validateCallback(this, dialogAjaxDone);">
+		<div class="pageFormContent" layoutH="56">
+			<dl class="nowrap">
+				<dt>发文标题</dt>
+				<dd><input name="title" class="required" type="text" size="110" value="" alt=""/></dd>
+			</dl>
+			<dl>
+				<dt>正文</dt>
+				<dd><div class="unit">
+							<textarea class="editor" name="content" rows="22" cols="80"></textarea>
+					</div></dd>
+			</dl>
+		</div>
+			
+		<div class="formBar">
+			<ul>
+				<li><div class="buttonActive"><div class="buttonContent"><button type="submit">添加</button></div></div></li>
+				<li>
+					<div class="button"><div class="buttonContent"><button type="button" class="close">取消</button></div></div>
+				</li>
+			</ul>
+		</div>
+	</form>
+</div>

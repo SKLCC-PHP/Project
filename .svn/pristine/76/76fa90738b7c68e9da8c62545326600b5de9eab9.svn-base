@@ -1,0 +1,32 @@
+
+<div class="pageContent">
+	<form method="post" action="{{$smarty.const.__URL__&a=addmyawards|url}}" class="pageForm required-validate" onsubmit="return iframeCallback(this, dialogAjaxDone);" enctype="multipart/form-data">
+		<div class="pageFormContent" layoutH="56">
+			&nbsp&nbsp<b>提示：</b>上传图片作为获奖的证明材料</br></br>
+			<input type = "hidden" name = "main_info_id" value = "{{$main_info_id}}">
+			<dl>
+				<dt>简单描述(50字内)：</dt>
+				<dd><textarea class="required" name="description" id="remarks" rows="5" cols="80" ></textarea></dd>
+				
+			</dl>
+			
+			<dl></dl><dl></dl><dl></dl><dl></dl><dl></dl>
+			
+			<dl >
+				<dt>图片：</dt>
+				
+                <dd><input type="file" name="address" value="" /></dd>
+            </dl>
+			</dl>
+			
+		</div>
+		<div class="formBar">
+			<ul>
+				<li><div class="buttonActive"><div class="buttonContent"><button type="submit">添加</button></div></div></li>
+				<li>
+					<div class="button"><div class="buttonContent"><button type="button" class="close">取消</button></div></div>
+				</li>
+			</ul>
+		</div>
+	</form>
+</div>

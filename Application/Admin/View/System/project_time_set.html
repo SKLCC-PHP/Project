@@ -1,0 +1,50 @@
+
+<div class="pageContent">
+	<form method="post" action="{{$smarty.const.__URL__&a=project_time_set|url}}" class="pageForm required-validate" onsubmit="return validateCallback(this, dialogAjaxDone);">
+		<div class="pageFormContent" layoutH="56">
+			大学生课外学术科研基金项目<div class="divider"></div>
+				<dl>
+					<dt>开始报名时间</dt>
+					<input type="text" class="date" name="KYJJ_begin_add_time" value="{{$programtime['KYJJ_begin_add_time']}}"/>
+					
+				</dl>
+				<dl>
+					<dt>结束报名时间</dt>
+					<input type="text" class="date" name="KYJJ_end_add_time" value="{{$programtime['KYJJ_end_add_time']}}"/>
+					
+				</dl>
+				<dl></dl><dl></dl>
+				<dl>
+					<dt>开始上传中期检查材料</dt>
+					<input type="text" class="date"  name="KYJJ_begin_middle_check_time" value="{{$programtime['KYJJ_begin_middle_check_time']}}"/>
+					
+				</dl>
+				<dl>
+					<dt>结束上传中期检查材料</dt>
+					<input type="text" class="date"  name="KYJJ_end_middle_check_time" value="{{$programtime['KYJJ_end_middle_check_time']}}"/>
+					
+				</dl>
+				<dl></dl><dl></dl>
+				<dl>
+					<dt>开始上传结题评审材料</dt>
+					<input type="text" class="date" name="KYJJ_begin_final_check_time" value="{{$programtime['KYJJ_begin_final_check_time']}}"/>
+					
+				</dl>
+				<dl>
+					<dt>结束上传结题评审材料</dt>
+					<input type="text" class="date" name="KYJJ_end_final_check_time" value="{{$programtime['KYJJ_end_final_check_time']}}"/>
+					
+				</dl>
+			<div class="divider"></div>
+		
+		</div>
+		<div class="formBar">
+			<ul>
+				<li><div class="buttonActive"><div class="buttonContent"><button type="submit">修改</button></div></div></li>
+				<li>
+					<div class="button"><div class="buttonContent"><button type="button" class="close">取消</button></div></div>
+				</li>
+			</ul>
+		</div>
+	</form>
+</div>

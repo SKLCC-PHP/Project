@@ -1,0 +1,125 @@
+<div class="unit">
+	<div class = "pageContent">
+		<form method = "post" action = "{{$smarty.const.__URL__&a=checkmiddlecheck|url}}" class="pageForm required-validate" onsubmit="return validateCallback(this, dialogAjaxDone);">
+		<input type = "hidden" name = "main_info_id" value = {{$list.main_info_id}}>
+		<input type = "hidden" name = "stuID" value = {{$list.stuID}}>
+			<div class="pageFormContent" layoutH="56" style = "padding-left:5%; padding-right:10%">
+				<table>
+					<tr>
+						<th style = "font-size:20px"><br/>一、背景</th>
+					</tr>
+					<tr>
+						<td style = "font-size:15px"><br/>{{$list_tran['background']}} </td>
+					</tr>
+					<tr>
+						<th style = "font-size:20px"><br/><br/>二、内容</th>
+					</tr>
+					<tr> 
+						<td style = "font-size:15px"><br/>{{$list_tran['content']}}</td>
+					</tr>
+					<tr> 
+						<th style = "font-size:20px"><br/><br/>三、课题内容、研究人员、计划的调整情况</th>
+					</tr>
+					<tr> 
+						<td style = "font-size:15px"><br/>{{$list_tran['member']}}</td>
+					</tr>
+					<tr> 
+						<th style = "font-size:20px"><br/><br/>四、下阶段研究计划及成果完成的保证措施</th>
+					</tr>
+					<tr> 
+						<td style = "font-size:15px"><br/>{{$list_tran['next']}}</td>
+					</tr>
+				</table>
+				<div align = "right">
+				<br/>
+				<br/>
+				{{$list['update_time']}}
+				</div>
+				<div class="divider"></div>
+				<!--审核区域-->
+				{{if $cur_role eq 'host_student' or $cur_role == 'super_admin' or $cur_role eq 'counselor'}}
+				<div>
+					
+					<li style = "font-size:15px">学院审核:
+						{{if $list.college_check_result eq ''}}
+							<b>待审核</b>
+						{{else}}
+							<b>{{$list.college_check_result}}</b>
+						{{/if}}
+					</li>
+					
+					<li style = "font-size:15px">学校审核:
+						{{if $list.school_check_result eq ''}}
+							<b>待审核</b>
+						{{else}}
+							<b>{{$list.school_check_result}}</b>
+						{{/if}}
+					</li>
+					
+
+				</div>
+				{{/if}}
+				{{if $cur_role eq 'college_manager'}}
+					{{if $list.college_check_result eq ''}}
+					<div>
+					
+					<li style = "font-size:15px">学院审核</li><br>
+						<textarea class="" name="college_check_result" id="remarks" rows="5" cols="80"></textarea>	
+					</div>
+					<div class="divider"></div>
+			
+					<ul>
+						<li><div class="buttonActive"><div class="buttonContent"><button type="submit">确定</button></div></div></li>
+				
+					</ul>
+					{{else}}
+					<div>
+						<li style = "font-size:15px">学院审核
+						<b>{{$list.college_check_result}}</b>
+						</li>
+					</div>
+
+				{{/if}}
+			{{/if}}
+			{{if $cur_role eq 'school_manager'}}
+				{{if $list.school_check_result eq ''}}
+				<div>
+					
+					<li style = "font-size:15px">学院审核结果:&nbsp&nbsp<b>{{$list.college_check_result}}</b></li>
+					</br>
+					<div class="divider"></div>
+
+					{{if $list.college_check_result eq ''}}
+					<li style = "font-size:15px">学校审核还没开始</li>
+					{{else}}
+					<li style = "font-size:15px">学校审核</li>
+					</br>
+					<textarea class="" name="school_check_result" id="remarks" rows="5" cols="80"></textarea>
+					
+
+					</div>
+					<div class="divider"></div>
+				
+					<ul>
+						<li><div class="buttonActive"><div class="buttonContent"><button type="submit">确定</button></div></div></li>
+					</ul>
+				{{/if}}
+				</div>
+				{{else}}
+					<div>
+					
+					<li style = "font-size:15px">学院审核:
+							<b>{{$list.college_check_result}}</b>
+					</li>
+					
+					<li style = "font-size:15px">学校审核:
+							<b>{{$list.school_check_result}}</b>
+					</li>
+					</div>
+				{{/if}}
+			{{/if}}
+
+			</div>
+		</form>
+	</div>
+</div>

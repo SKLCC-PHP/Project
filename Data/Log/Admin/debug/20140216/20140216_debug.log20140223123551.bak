@@ -1,0 +1,27 @@
+[2014-02-16 12:10:30]SQL[256]Table 'project.pro_news_type' doesn't exist[SQL]:SELECT id,title,parent FROM `pro_news_type` WHERE state=0  C:\xampp\htdocs\project\Library\Log.class.php362
+[2014-02-16 13:48:57]SQL[256]Table 'project.pro_college' doesn't exist[SQL]:SHOW COLUMNS FROM `pro_college`C:\xampp\htdocs\project\Library\Log.class.php362
+[2014-02-16 13:52:17]SQL[256]You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'LIMIT 1' at line 1[SQL]:SELECT college_name FROM `pro_college` WHERE college_id =  LIMIT 1   C:\xampp\htdocs\project\Library\Log.class.php362
+[2014-02-16 14:34:33]ERROR[4]syntax error, unexpected T_LNUMBER, expecting T_STRINGC:\xampp\htdocs\project\Application\Admin\Controller\KYJJController.class.php157
+[2014-02-16 14:38:24]EXCEPTION[1000]TraceException Unable to load template file 'KYJJ/sixteenth.html'
+[2014-02-16 14:39:13]SQL[256]Unknown column 'telephone' in 'field list'[SQL]:SELECT program_id, title, type, college_id, uid, teacher, member, telephone FROM `pro_kyjj`  C:\xampp\htdocs\project\Library\Log.class.php362
+[2014-02-16 16:38:16]SQL[256]Unknown column '15andtrue' in 'where clause'[SQL]:SELECT COUNT(*) AS ts_count FROM `pro_kyjj` WHERE TIME = 15andtrue  C:\xampp\htdocs\project\Library\Log.class.php362
+[2014-02-16 16:56:52]EXCEPTION[1000]TraceException Unable to load template file 'KYJJ/sixteenth.html'
+[2014-02-16 17:01:44]WARN[2]Missing argument 1 for KYJJController::indexAction()C:\xampp\htdocs\project\Application\Admin\Controller\KYJJController.class.php92
+[2014-02-16 17:02:38]WARN[2]Missing argument 1 for KYJJController::indexAction()C:\xampp\htdocs\project\Application\Admin\Controller\KYJJController.class.php92
+[2014-02-16 17:04:07]WARN[2]Missing argument 1 for KYJJController::indexAction()C:\xampp\htdocs\project\Application\Admin\Controller\KYJJController.class.php92
+[2014-02-16 17:22:33]SQL[256]You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'and true' at line 1[SQL]:SELECT COUNT(*) AS ts_count FROM `pro_kyjj` WHERE TIME = TIME = '16' and  and true  C:\xampp\htdocs\project\Library\Log.class.php362
+[2014-02-16 17:23:07]SQL[256]You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'and true' at line 1[SQL]:SELECT COUNT(*) AS ts_count FROM `pro_kyjj` WHERE TIME = TIME = '16' and  and true  C:\xampp\htdocs\project\Library\Log.class.php362
+[2014-02-16 17:23:57]SQL[256]Unknown column '15true' in 'where clause'[SQL]:SELECT COUNT(*) AS ts_count FROM `pro_kyjj` WHERE TIME = 15true  C:\xampp\htdocs\project\Library\Log.class.php362
+[2014-02-16 21:07:18]ERROR[4]syntax error, unexpected ';', expecting T_FUNCTIONC:\xampp\htdocs\project\Application\Admin\Controller\TemplateController.class.php33
+[2014-02-16 21:07:23]ERROR[4]syntax error, unexpected ';', expecting T_FUNCTIONC:\xampp\htdocs\project\Application\Admin\Controller\TemplateController.class.php33
+[2014-02-16 21:10:05]EXCEPTION[1000]TraceException Method getRealname not exist this class View.C:\xampp\htdocs\project\Application\Admin\Controller\TemplateController.class.php21
+[2014-02-16 21:15:27]EXCEPTION[1000]TraceException Method getRealname not exist this class View.C:\xampp\htdocs\project\Application\Admin\Controller\TemplateController.class.php21
+[2014-02-16 21:25:38]ERROR[4]syntax error, unexpected '.'C:\xampp\htdocs\project\Application\Admin\Controller\AttachmentController.class.php333
+[2014-02-16 21:27:05]EXCEPTION[1000]TraceException Method getRealname not exist this class View.C:\xampp\htdocs\project\Application\Admin\Controller\TemplateController.class.php21
+[2014-02-16 21:28:56]EXCEPTION[1000]TraceException Method getRealname not exist this class View.C:\xampp\htdocs\project\Application\Admin\Controller\TemplateController.class.php21
+[2014-02-16 21:29:15]EXCEPTION[1000]TraceException Method getRealname not exist this class View.C:\xampp\htdocs\project\Application\Admin\Controller\TemplateController.class.php21
+[2014-02-16 21:30:00]EXCEPTION[1000]TraceException Method getRealname not exist this class View.C:\xampp\htdocs\project\Application\Admin\Controller\TemplateController.class.php22
+[2014-02-16 21:31:33]EXCEPTION[1000]TraceException Method getRealname not exist this class View.C:\xampp\htdocs\project\Application\Admin\Controller\TemplateController.class.php22
+[2014-02-16 21:31:39]EXCEPTION[1000]TraceException Method getRealname not exist this class View.C:\xampp\htdocs\project\Application\Admin\Controller\TemplateController.class.php22
+[2014-02-16 23:16:42]SQL[256]You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'LIMIT 1' at line 1[SQL]:SELECT * FROM `pro_template` WHERE id= LIMIT 1   C:\xampp\htdocs\project\Library\Log.class.php362
+[2014-02-16 23:45:04]ERROR[4]syntax error, unexpected '='C:\xampp\htdocs\project\Application\Admin\Controller\TemplateController.class.php173

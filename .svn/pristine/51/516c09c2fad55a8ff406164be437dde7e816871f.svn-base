@@ -1,0 +1,27 @@
+
+<form id="pagerForm" method="post" action="{{$smarty.const.__URL__&a=index|url}}">
+	<input type="hidden" name="pageNum" value="{{$page.pageNum}}" />
+	<input type="hidden" name="numPerPage" value="{{$page.numPerPage}}" />
+	<input type="hidden" name="orderField" value="{{$page.orderField}}" />
+	<input type="hidden" name="orderDirection" value="{{$page.orderDirection}}" />
+	<input type="hidden" name="id" value="{{$smarty.post.id}}"/>
+	<input type="hidden" name="title" value="{{$smarty.post.title}}"/>
+	<input type="hidden" name="content" value="{{$smarty.post.content}}"/>
+	<input type="hidden" name="stuID" value="{{$smarty.post.stuID}}"/>
+	<input type="hidden" name="author" value="{{$smarty.post.author}}"/>
+</form>
+		<table class="list" width="80%">
+			<table border="0" width="200"><tbody><tr><td align="center"><b><font size="16" color="#000080"></font></b></td></tr></tbody></table>
+			<br/>
+			<span style="LINE-HEIGHT: 150%; FONT-FAMILY: 仿宋_GB2312; COLOR: black; FONT-SIZE: 24pt; mso-hansi-font-family: 宋体; mso-bidi-font-family: 宋体; mso-font-kerning: 0pt;">{{$get_notice[0]['title']}}<br>
+			</span>
+			<hr/>
+			<div class="pageFormContent" layoutH = "100%" style = "padding-left:2%; padding-right:38%;">
+				{{$tran}}
+				<br/>
+				<div style = "float:right">
+					{{$get_notice[0]['create_time']}}
+					<br/>编写人：{{$get_notice['realname']}}
+				</div>
+			</div>		
+		</table>

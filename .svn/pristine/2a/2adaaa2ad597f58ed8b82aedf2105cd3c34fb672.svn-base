@@ -1,0 +1,481 @@
+<html>
+<head>
+    <title>图表分析</title>
+</head>
+<div class="pageHeader">
+    <form onsubmit="return navTabSearch(this);" action="{{$smarty.const.__URL__&a=chart&PID=$PID&TIME=$TIME|url}}" method="post">
+        <input type="hidden" name="pageNum" value="{{$page.pageNum}}" />
+        <input type="hidden" name="numPerPage" value="{{$page.numPerPage}}" />
+        <input type="hidden" name="orderField" value="{{$page.orderField}}" />
+        <input type="hidden" name="orderDirection" value="{{$page.orderDirection}}" />
+        <input type="hidden" name="college_id" value="{{$smarty.post.college_id}}">
+        <input type="hidden" name="program_id" value="{{$smarty.post.program_id}}">
+        <input type="hidden" name="type" value="{{$smarty.post.type}}">
+        <input type="hidden" name="title" value="{{$smarty.post.title}}" />
+        <input type="hidden" name="uid" value="{{$smarty.post.uid}}">
+        <input type="hidden" name="uid" value="{{$smarty.post.uid}}">
+        <input type="hidden" name="member" value="{{$smarty.post.member}}">
+        <input type="hidden" name="totle_number" value="{{$smarty.post.totle_number}}">
+        <input type="hidden" name="college_id" value="{{$smarty.post.unit}}" />
+        <input type="hidden" name="teacher" value="{{$smarty.post.teacher}}" />
+        <input type="hidden" name="telephone" value="{{$smarty.post.telephone}}" />
+        <input type="hidden" name="middle_check" value="{{$smarty.post.middle_check}}" />
+        <input type="hidden" name="final_check" value="{{$smarty.post.final_check}}" />
+        <input type="hidden" name="remarks" value="{{$smarty.post.remarks}}" />
+
+        <div class="searchBar">
+        <table class="searchContent">
+            <tr>
+                <td>学院名称:</td>
+                <td>
+                    <select class="combox" name="college_id">
+                        <option value="">--全部学院--</option>
+                        {{html_options options=$college selected=$smarty.post.college_id}}
+                    </select>
+                </td>
+                <td>项目类型:</td>
+                <td>
+                    <select class="combox" name="project_type">
+                        <option value="">--全部项目--</option>
+                        {{html_options options=$type selected=$smarty.post.project_type}}
+                    </select>
+                </td>
+                <td>统计类型:</div></td>
+                <td>
+                    <select class="combox" name="statistics_type">
+                        <option value="">--统计类型--</option>
+                        {{html_options options=$statistics selected=$smarty.post.statistics_type}}
+                    </select>
+                </td>
+                <td>图表类型:</div></td>
+                <td>
+                    <select class="combox" name="chart_type">
+                        <option value="" name="">--选择图形--</option>
+                        {{html_options options=$charttype selected=$smarty.post.chart_type}}
+                    </select>
+                </td>
+                <td>
+                    <div class="subBar">
+                        <ul>
+                            <li><div class="buttonActive"><div class="buttonContent"><button type="submit">查询</button></div></div></li>
+                            <li><div class="button"><div class="buttonContent"><button type="button" onclick="return navTabSearch(this);">刷新</button></div></div></li>
+                        </ul>
+                    </div>
+                </td>
+            </tr>
+        </table>
+        
+    </div>
+    </form>
+</div>
+
+<input type = "hidden" id = "totle_number" value = "{{$totle_number}}">
+<input type = "hidden" id = "college_name" value = "{{$college_name}}">
+<input type = "hidden" id = "name" value = "{{$name}}">
+<input type = "hidden" id = "str" value = "{{$str}}">
+<input type = "hidden" id = "data" value = "{{$data}}">
+<input type = "hidden" id = "illustration" value = "{{$illustration}}">
+<input type = "hidden" id = "title" value = "{{$title}}">
+<input type = "hidden" id = "charttype" value = "{{$chart}}">
+<input type = "hidden" id = "ID" value = "{{$selected_college_id}}">
+<input type = "hidden" id = "statisticstype" value = "{{$statisticstype}}">
+<input type = "hidden" id = "project" value = "{{$project}}">
+<input type = "hidden" id = "collegetype" value = "{{$collegetype}}">
+<script type="text/javascript" charset="utf-8">
+
+// alert("Hello World!");
+//imformation request
+var illustration = document.getElementById("illustration").value;
+var str_illustration = String(illustration);
+var Legend = str_illustration.split(",");
+var data = document.getElementById("data").value;
+var str_data = String(data);
+var Data_tmp = str_data.split(",");
+var ID = document.getElementById("ID").value;
+var str_ID = String(ID);
+var ID = str_ID.split(",");
+// alert(ID);
+var Data = new Array();
+// alert(pieData);
+var title = document.getElementById("title").value;
+var charttype = document.getElementById("charttype").value;
+var statisticstype = document.getElementById("statisticstype").value;
+statisticstype = String(statisticstype);
+var project = document.getElementById("project").value;
+project = String(project);
+var collegetype = document.getElementById("collegetype").value;
+collegetype = String(collegetype);
+// alert(project);
+// alert(statisticstype);
+
+for (i = 0;i < Data_tmp.length;i++)
+{
+    Data[i] = parseInt(Data_tmp[i]);
+    if ( Data[i] >= 0)
+    {
+    }
+    else
+    {
+        Data[i] = 0;
+    }
+}
+
+
+/* Title settings */        
+titleXpos = 475;
+titleYpos = 60;
+
+if (charttype == "饼状图")
+{
+    /* Pie Data */
+    pieRadius = 150;
+    pieXpos = 300;
+    pieYpos = 170;
+
+    var arr_tmp = new Array();
+    var pieLegend = new Array();
+    for (i = 0;i < Data.length;i++)
+    {
+        arr_tmp[0] = Legend[i];
+        arr_tmp[1] = Data[i];
+        pieLegend[i] = arr_tmp.join(" —— ");
+        // Legend[i].replace(",","——");
+    }
+
+    pieLegendPos = "east";
+
+    $(function () {
+        var r = Raphael("chartHolder");
+         
+        r.text(titleXpos, titleYpos, title).attr({"font-size": 20,'text-anchor': 'start'});
+        
+        var pie = r.piechart(pieXpos, pieYpos, pieRadius, Data, {legend: pieLegend, legendpos: pieLegendPos});
+        pie.hover(function () {
+            this.sector.stop();
+            this.sector.scale(1.1,1.1, this.cx, this.cy);
+            if (this.label) {
+                this.label[0].stop();
+                this.label[0].attr({ r: 7.5 });
+                this.label[1].attr({"font-weight": 800});
+            }
+        }, function () {
+            this.sector.animate({ transform: 's1 1 ' + this.cx + ' ' + this.cy }, 500, "bounce");
+            if (this.label) {
+                this.label[0].animate({ r: 5 }, 500, "bounce");
+                this.label[1].attr({"font-weight": 400});
+            }
+        });
+        
+    });
+}
+
+else
+{
+    var options = {
+        stacked: false,
+        gutter:20,
+        axis: "0 0 1 1", // Where to put the labels (trbl)
+        axisystep: 5 // How many x interval labels to render (axisystep does the same for the y axis)
+    };
+    
+    $(function() {
+        // Creates canvas
+        var r = Raphael("chartHolder");
+        //var data = [[10,20,30,50],[15,25,35,50]]
+        
+        var length = Data.length;
+
+        var max_inx = 0;
+        for (i = 1;i < length;i++)
+        {
+            if (Data[i] > Data[max_inx])
+            {
+                max_inx = i;
+            }
+        }
+        var max = Data[max_inx];
+        // alert(max);
+        
+
+        if (collegetype != "")
+        {
+            ID[0] = "类一";
+            ID[1] = "类二";
+            ID[2] = "类三";
+            ID[3] = "类四";
+        }
+
+        y = 20;
+        p = 300;        
+
+        // alert(length);
+        // stacked: false
+        var column_data = new Array();
+        var column_legend = new Array();
+        if (length < 10)
+        {
+            for (i = 0; i < length;i++)
+            {
+                column_legend[i] = ID[i];
+                column_data[i] = Data[i];
+            }
+            // alert("I am here1");
+
+            var chart1 = r.barchart(400, y, 36*column_data.length+10, p, column_data, options).hover(function() {
+            this.flag = r.popup(this.bar.x, this.bar.y, this.bar.value).insertBefore(this);
+            // alert("I am here15");
+            }, function() {
+                this.flag.animate({opacity: 0}, 500, "<", function () {this.remove();});
+                // alert("I am here16");
+            });
+            // alert("I am here17");
+            chart1.label(column_legend,true);
+            // alert("I am here2");
+        }
+        else
+        {
+            for (i = 0; i < 10;i++)
+            {
+                column_legend[i] = ID[i];
+                column_data[i] = Data[i];
+            }
+            column_legend[i] = " ";
+            column_data[i] = max;
+            // alert("I am here3");
+
+            var chart1 = r.barchart(30, y, 36*column_data.length+10, p, column_data, options).hover(function() {
+            this.flag = r.popup(this.bar.x, this.bar.y, this.bar.value).insertBefore(this);
+            }, function() {
+                this.flag.animate({opacity: 0}, 500, "<", function () {this.remove();});
+            });
+            chart1.label(column_legend,true);
+            // alert("I am here4");
+        }
+        // alert("Hi");
+
+        var column_data = new Array();
+        var column_legend = new Array();
+        if (length >= 10 && length < 20)
+        {
+            for (i = 10; i < length;i++)
+            {
+                column_legend[i-10] = ID[i];
+                column_data[i-10] = Data[i];
+            }
+            column_legend[i-10] = "max";
+            column_data[i-10] = max;
+            // alert("I am here5");
+
+            var chart2 = r.barchart(410, y, 36*column_data.length+10, p, column_data, options).hover(function() {
+            this.flag = r.popup(this.bar.x, this.bar.y, this.bar.value).insertBefore(this);
+            }, function() {
+                this.flag.animate({opacity: 0}, 500, "<", function () {this.remove();});
+            });
+            chart2.label(column_legend,true);
+            // alert("I am here6");
+        }
+        else
+        {
+            if ( length >= 20)
+                {
+                for (i = 10; i < 20;i++)
+                {
+                    column_legend[i-10] = ID[i];
+                    column_data[i-10] = Data[i];
+                }
+                column_legend[i-10] = " ";
+                column_data[i-10] = max;
+                // alert("I am here7");
+
+                var chart2 = r.barchart(410, y, 36*column_data.length+10, p, column_data, options).hover(function() {
+                this.flag = r.popup(this.bar.x, this.bar.y, this.bar.value).insertBefore(this);
+                }, function() {
+                    this.flag.animate({opacity: 0}, 500, "<", function () {this.remove();});
+                });
+                // alert("I am here");
+                // alert(column_legend);
+                chart2.label(column_legend,true);
+                // alert("I am here8");
+            }
+        }
+
+        var column_data = new Array();
+        var column_legend = new Array();
+        if (length >= 20 && length < 30)
+        {
+            for (i = 20; i < length;i++)
+            {
+                column_legend[i-20] = ID[i];
+                column_data[i-20] = Data[i];
+            }
+            column_legend[i-20] = "max";
+            column_data[i-20] = max;
+            // alert("I am here9");
+
+            var chart3 = r.barchart(790, y, 36*column_data.length+10, p, column_data, options).hover(function() {
+            this.flag = r.popup(this.bar.x, this.bar.y, this.bar.value).insertBefore(this);
+            }, function() {
+                this.flag.animate({opacity: 0}, 500, "<", function () {this.remove();});
+            });
+            chart3.label(column_legend,true);
+            // alert("I am here10");
+        }
+        else
+        {
+            if(length >= 30)
+            {
+                for (i = 20; i < 30;i++)
+                {
+                    column_legend[i-20] = ID[i];
+                    column_data[i-20] = Data[i];
+                }
+                column_legend[i-20] = " ";
+                column_data[i-20] = max;
+                // alert("I am here11");
+                var chart3 = r.barchart(790, y, 36*column_data.length+10, p, column_data, options).hover(function() {
+                this.flag = r.popup(this.bar.x, this.bar.y, this.bar.value).insertBefore(this);
+                }, function() {
+                    this.flag.animate({opacity: 0}, 500, "<", function () {this.remove();});
+                });
+                chart3.label(column_legend,true);
+                // alert("I am here12");
+            }
+        }
+
+        var column_data = new Array();
+        var column_legend = new Array();
+        if (length >= 30 && length < 40)
+        {
+            for (i = 30; i < length;i++)
+            {
+                column_legend[i-30] = ID[i];
+                column_data[i-30] = Data[i];
+            }
+            column_legend[i-30] = "max";
+            column_data[i-30] = max;
+            // alert("I am here13");
+
+            var chart4 = r.barchart(1170, y, 36*column_data.length+10, p, column_data, options).hover(function() {
+            this.flag = r.popup(this.bar.x, this.bar.y, this.bar.value).insertBefore(this);
+            }, function() {
+                this.flag.animate({opacity: 0}, 500, "<", function () {this.remove();});
+            });
+            chart4.label(column_legend,true);
+            // alert("I am here14");
+        } 
+        else
+        {
+            if(length >= 40)
+            {
+                for (i = 30; i < 40;i++)
+                {
+                    column_legend[i-30] = ID[i];
+                    column_data[i-30] = Data[i];
+                }
+                column_legend[i-30] = " ";
+                column_data[i-30] = max;
+                // alert("I am here11");
+                var chart3 = r.barchart(1170, y, 36*column_data.length+10, p, column_data, options).hover(function() {
+                this.flag = r.popup(this.bar.x, this.bar.y, this.bar.value).insertBefore(this);
+                }, function() {
+                    this.flag.animate({opacity: 0}, 500, "<", function () {this.remove();});
+                });
+                chart3.label(column_legend,true);
+                // alert("I am here12");
+            }
+        }
+
+        var column_data = new Array();
+        var column_legend = new Array();
+        if (length >= 40 && length < 50)
+        {
+            for (i = 40; i < length;i++)
+            {
+                column_legend[i-40] = ID[i];
+                column_data[i-40] = Data[i];
+            }
+            column_legend[i-40] = "max";
+            column_data[i-40] = max;
+            // alert("I am here13");
+
+            var chart4 = r.barchart(1570, y, 36*column_data.length+10, p, column_data, options).hover(function() {
+            this.flag = r.popup(this.bar.x, this.bar.y, this.bar.value).insertBefore(this);
+            }, function() {
+                this.flag.animate({opacity: 0}, 500, "<", function () {this.remove();});
+            });
+            chart4.label(column_legend,true);
+            // alert("I am here14");
+        } 
+        else
+        {
+            if(length >= 50)
+            {
+                for (i = 40; i < 50;i++)
+                {
+                    column_legend[i-40] = ID[i];
+                    column_data[i-40] = Data[i];
+                }
+                column_legend[i-40] = " ";
+                column_data[i-40] = max;
+                // alert("I am here11");
+                var chart3 = r.barchart(1570, y, 36*column_data.length+10, p, column_data, options).hover(function() {
+                this.flag = r.popup(this.bar.x, this.bar.y, this.bar.value).insertBefore(this);
+                }, function() {
+                    this.flag.animate({opacity: 0}, 500, "<", function () {this.remove();});
+                });
+                chart3.label(column_legend,true);
+                // alert("I am here12");
+            }
+        }
+
+        // zeroData = [0];
+        // zeroLegend = [" "];
+        // var chart0 = r.barchart(length*36+70, y+300, p+300, 0, zeroData, options).hover(function() {
+        // this.flag = r.popup(this.bar.x, this.bar.y, this.bar.value).insertBefore(this);
+        // }, function() {
+        //         this.flag.animate({opacity: 0}, 500, "<", function () {this.remove();});
+        // });
+        // chart0.label(zeroLegend,true);    
+        
+    });
+}
+
+
+</script>
+
+<div id="chartHolder"></div>
+
+<div>
+    <body>
+        <table class="table" width="100%" layoutH="114">
+            <tbody>
+               {{section name=loop loop=$column_illustration}}
+                    <tr>
+                        {{section name=subloop loop=$column_illustration[loop]}}  
+                            <td>{{$column_illustration[loop][subloop]}}</td> 
+                        {{/section}}
+                    </tr>   
+                {{/section}}
+
+              		<tr><td></td><td></td><td></td><td></td></tr>
+                    <tr><td></td><td></td><td></td><td></td></tr>
+                    <tr><td></td><td></td><td></td><td></td></tr>
+                    <tr><td></td><td></td><td></td><td></td></tr>
+                    <tr><td></td><td></td><td></td><td></td></tr>
+                    <tr><td></td><td></td><td></td><td></td></tr>
+                    <tr><td></td><td></td><td></td><td></td></tr>
+                    <tr><td></td><td></td><td></td><td></td></tr>
+                    <tr><td></td><td></td><td></td><td></td></tr>
+                    <tr><td></td><td></td><td></td><td></td></tr>
+                    <tr><td></td><td></td><td></td><td></td></tr>
+                    <tr><td></td><td></td><td></td><td></td></tr>
+                    <tr><td></td><td></td><td></td><td></td></tr>
+                    <tr><td></td><td></td><td></td><td></td></tr>
+                    <tr><td></td><td></td><td></td><td></td></tr>
+                    <tr><td></td><td></td><td></td><td></td></tr>
+                    <tr><td></td><td></td><td></td><td></td></tr>
+            </tbody>
+        </table>
+    </body>
+</html>
+

@@ -1,0 +1,112 @@
+<!--表单项目展示首页-->
+<form id="pagerForm" method="post" action="{{$smarty.const.__URL__&PID=$PID&TIME=$TIME|url}}">
+	<input type="hidden" name="pageNum" value="{{$page.pageNum}}" />
+	<input type="hidden" name="numPerPage" value="{{$page.numPerPage}}" />
+	<input type="hidden" name="orderField" value="{{$page.orderField}}" />
+	<input type="hidden" name="orderDirection" value="{{$page.orderDirection}}" />
+	<input type="hidden" name="college_id" value="{{$smarty.post.college_id}}" />
+	<input type="hidden" name="id" value="{{$smarty.post.id}}">
+	<input type="hidden" name="project_id" value="{{$smarty.post.project_id}}">
+	<input type="hidden" name="type" value="{{$smarty.post.type}}">
+	<input type="hidden" name="title" value="{{$smarty.post.title}}" />
+	<input type="hidden" name="student_name" value="{{$smarty.post.student_name}}">
+
+</form>
+
+<div class="pageHeader">
+	<form onsubmit="return navTabSearch(this);" action="{{$smarty.const.__URL__&PID=$PID&TIME=$TIME|url}}" method="post">
+	<div class="searchBar">
+		<table class="searchContent">
+			<tr>
+				
+				<td>
+					项目编号：<input type="text" name="project_id" value="{{$smarty.post.project_id}}" />
+				</td>
+				<td>
+					项目名称：<input type="text" name="title" value="{{$smarty.post.title}}" />
+				</td>
+				<td>
+					主持人：<input type="text" name="student_name" value="{{$smarty.post.student_name}}" />
+				</td>
+				<td>
+					<select class="combox" name="type">
+						<option value="">--项目类型--</option>
+						{{html_options options=$project_type selected=$smarty.post.type}}
+					</select>
+				</td>
+				<td>
+					<select class="combox" name="college_id">
+						<option value="">--单位--</option>
+						{{html_options options=$college selected=$smarty.post.college_id}}
+					</select>
+				</td>
+				<td>
+					<div class="subBar">
+						<ul>
+							<li><div class="buttonActive"><div class="buttonContent"><button type="submit">检索</button></div></div></li>
+							<li><div class="button"><div class="buttonContent"><button type="button" onclick="return navTabSearch(this);">刷新</button></div></div></li>
+						</ul>
+					</div>
+				</td>
+			</tr>
+		</table>
+		
+	</div>
+	</form>
+</div>
+<div class="pageContent">
+	<div class="panelBar">
+		<ul class="toolBar">{{if $manager_role neq 'host_student'}}
+			<li><a class="icon" href="{{$smarty.const.__URL__&a=export&TIME=$TIME&PID=$PID|url}}"><span>导出EXCEL</span></a></li>{{/if}}
+			<li class="line">line</li>
+		</ul>
+	</div>
+	<table class="table" width="100%" layoutH="114">
+		<thead>
+			<tr>
+				<th orderField="project_id" class="{{$page.orderDirection}}">项目编号</th>
+				<th>项目名称</th>
+				<th>类型</th>
+				<th>单位</th>
+				<th>主持人</th>
+				<th>成员</th>
+				<th>指导老师</th>
+				<th>参与人数</th>
+				{{if $manager_role neq 'host_student'}}
+					<th>中期</th>
+					<th>结题</th>
+					<th>电话</th>
+					<th>详细</th>
+					<th>修改</th>
+				{{/if}}
+			</tr>
+		</thead>
+		<tbody>
+			{{section name=loop loop=$list}}
+			<tr target="id" rel="{{$list[loop].id}}">
+				<input name="id" value="{{$list[loop].id}}" type="hidden">
+				<td>{{$list[loop].project_id}}</td>
+				<td>{{$list[loop].title}}</td>
+				<td>{{$list[loop].type}}</td>
+				<td>{{$list[loop].college_name}}</td>
+				<td>{{$list[loop].realname}}</td>
+				<td>{{$list[loop].member_str}}</td>
+				<td>{{$list[loop].teacher_str}}</td>
+				<td>{{$list[loop].totle_number}}</td>
+				{{if $manager_role neq 'host_student'}}
+				<td>{{$list[loop].middle_check}}</td>
+				<td>{{$list[loop].final_check}}</td>
+				<td>{{$list[loop].telephone}}</td>
+				<td>
+					<a target="navTab" href="{{$smarty.const.__URL__&a=viewdetails&main_info_id=$list[loop].id|url}}" class="btnAttach">详细</a>
+				</td>
+				<td>
+					<a target="dialog" href="{{$smarty.const.__URL__&a=updatestudentproject&id=$list[loop].id|url}}" class="btnEdit" width="500" height="350" title="修改">修改</a>
+				</td>
+				{{/if}}
+			</tr>
+		    {{/section}}
+		</tbody>
+	</table>
+	{{include file="Include/page.html"}}
+</div>

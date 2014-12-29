@@ -1,0 +1,69 @@
+
+<form id="pagerForm" method="post" action="{{$smarty.const.__URL__&a=allcolleges&TIME=$TIME|url}}">
+	<input type="hidden" name="pageNum" value="{{$page.pageNum}}" />
+	<input type="hidden" name="numPerPage" value="{{$page.numPerPage}}" />
+	<input type="hidden" name="orderField" value="{{$page.orderField}}" />
+	<input type="hidden" name="orderDirection" value="{{$page.orderDirection}}" />
+	<input type="hidden" name="college_id" value="{{$smarty.post.college_id}}">
+	<input type="hidden" name="type" value="{{$smarty.post.type}}">
+
+</form>
+
+<div class="pageHeader">
+	<form onsubmit="return navTabSearch(this);" action="{{$smarty.const.__URL__&a=allcolleges&TIME=$TIME|url}}" method="post">
+	<div class="searchBar">
+		<table class="searchContent">
+			<tr>
+				<td>
+					<select class="combox" name="type">
+						<option value="">--附件归属--</option>
+						{{html_options options=$attachment_type selected=$smarty.post.type}}
+					</select>
+				</td>
+				<td>
+					<div class="subBar">
+						<ul>
+							<li><div class="buttonActive"><div class="buttonContent"><button type="submit">检索</button></div></div></li>
+							<li><div class="button"><div class="buttonContent"><button type="button" onclick="return navTabSearch(this);">刷新</button></div></div></li>
+						</ul>
+					</div>
+				</td>
+			</tr>
+		</table>
+		
+	</div>
+	</form>
+</div>
+<div class="pageContent">
+	<div class="panelBar">
+	</div>
+	<table class="table" width="100%" layoutH="114">
+		<thead>
+			<tr>
+				<th>科研项目</th>
+				<th>批次</th>
+				<th>文档类型</th>
+				
+				<th>一键下载</th>
+				
+			</tr>
+		</thead>
+		<tbody>
+		
+			{{section name=loop loop=$list}}
+			<tr target="college_id" rel="{{$list[loop].college_id}}">
+				<td>{{$PID_CHN[$PID]}}</td>
+				<td>{{$list[loop].TIME}}</td>
+				<td>{{$list[loop].type}}</td>
+				<td>
+					<a class="btnSelect" href="{{$smarty.const.__URL__&a=alldownload&PID=$list[loop].PID&TIME=$list[loop].TIME&type=$list[loop].TID|url}}" >下载</a>
+				</td>
+			
+				
+			</tr>
+		    {{/section}}
+		    
+		</tbody>
+	</table>
+	{{include file="Include/page.html"}}
+</div>

@@ -1,0 +1,64 @@
+
+<div class="pageContent">
+	<form method="post" action="{{$smarty.const.__URL__&a=add|url}}" class="pageForm required-validate" onsubmit="return validateCallback(this, dialogAjaxDone);">
+		<div class="pageFormContent" layoutH="56">
+			<p>
+				<label>学号(工号)：</label>
+				<input name="username" class="required" type="text" size="30" value="" alt=""/>
+			</p>
+			<p>
+				<label>姓名：</label>
+				<input name="realname" class="required" type="text" size="30" value="" alt=""/>
+			</p>
+			<p>
+				<label>院系：</label>
+				<select class="combox" name="college_id">
+					<option value="">--院系--</option>
+						{{html_options options=$all_colleges selected=$smarty.post.college_id}}
+				</select>
+			</p>
+			<p>
+				<label>联系电话：</label>
+				<input name="telephone" class="required" type="text" size="30" value="" alt=""/>
+			</p>
+			<p>
+				<label>邮箱：</label>
+				<input name="email" class="required" type="text" size="30" value="" alt=""/>
+			</p>
+			<p>
+				<label>密码：</label>
+				<input name="password" class="required alphanumeric" type="password" size="30" value="" alt=""/>
+			</p>
+			<p>
+				<label>角色：</label>
+				<select name="role_id" class="combox required">
+					<option value="">--角色--</option>
+					{{html_options options=$roles selected=$smarty.post.role}}
+				</select>
+			</p>
+
+			<p>
+				<label>状态：</label>
+				<select name="status" class="combox">
+					{{html_options options=$status selected=$smarty.post.status}}
+				</select>
+			</p>
+			<!--
+			<p>
+				<label>频道：</label>
+				<select name="channel_ids[]" multiple="multiple" style="width: 200px;height: 250px" size="10">
+					{{$channelBox}}
+				</select>&nbsp;<span>(按 Ctrl 可以进行多选)</span>
+			</p>
+			-->
+		</div>
+		<div class="formBar">
+			<ul>
+				<li><div class="buttonActive"><div class="buttonContent"><button type="submit">添加</button></div></div></li>
+				<li>
+					<div class="button"><div class="buttonContent"><button type="button" class="close">取消</button></div></div>
+				</li>
+			</ul>
+		</div>
+	</form>
+</div>

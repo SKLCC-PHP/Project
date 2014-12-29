@@ -1,0 +1,33 @@
+
+<div class="pageContent">
+	<form method="post" action="{{$smarty.const.__URL__&a=updatestudentproject|url}}" class="pageForm required-validate" onsubmit="return validateCallback(this, dialogAjaxDone);">
+		<div class="pageFormContent" layoutH="56">
+			<input type = "hidden" name = "id" value="{{$project_main_info.id}}">
+			<p>主持人：<font color="red">{{$realname}}</font></p>
+			<br />
+			<p>项目名称：<font color="red">{{$project_main_info.title}}</font></p>
+			
+			<p>
+				<label>项目编号：</label>
+				<input name="project_id" type="text" size="30" value="{{$project_main_info.project_id}}" alt=""/>
+			</p>
+			<p>
+				<label>中期检查结果：</label>
+				<input name="middle_check" type="text" size="30" value="{{$project_main_info.middle_check}}" alt=""/>
+			</p>
+			<p>
+				<label>结题评审结果：</label>
+				<input name="final_check"  type="text" size="30" value="{{$project_main_info.final_check}}" alt=""/>
+			</p>
+			
+		</div>
+		<div class="formBar">
+			<ul>
+				<li><div class="buttonActive"><div class="buttonContent"><button type="submit">修改</button></div></div></li>
+				<li>
+					<div class="button"><div class="buttonContent"><button type="button" class="close">取消</button></div></div>
+				</li>
+			</ul>
+		</div>
+	</form>
+</div>

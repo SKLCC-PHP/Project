@@ -1,0 +1,22 @@
+<div class="unit">
+	<div class = "pageContent">
+		<form method = "post" action = "{{$smarty.const.__URL__&a=viewawards|url}}" class="pageForm required-validate" onsubmit="return validateCallback(this, dialogAjaxDone);">
+			<div class="pageFormContent" layoutH="56" style = "padding-left:5%; padding-right:10%">
+			{{section name=loop loop=$list}}
+				<br/>
+					<div align="auto" style = "font-size:16px"> 
+						{{$list[loop].description}}
+					</div>
+					<br/>
+					<div align = "right" >{{$list[loop].create_time}}</div>
+					<div>
+						<a href="{{$smarty.const.__UPLOAD__}}{{$list[loop].address}}" target="{{$smarty.const.__UPLOAD__}}{{$list[loop].address}}"><img  src="{{$smarty.const.__UPLOAD__}}{{$list[loop].address}}"/>
+						</a>
+					</div>
+				<br/>
+			<hr/>
+			{{/section}}
+			</div>
+		</form>
+	</div>
+</div>
